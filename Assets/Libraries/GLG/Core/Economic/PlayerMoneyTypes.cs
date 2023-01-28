@@ -1,0 +1,1 @@
+public enum MoneyTypes { Cash }
