@@ -16,10 +16,10 @@ namespace GLG.UI
         [Header("===== UI Controller =========================================================")]
         public UIType uIType;
         public UIEntity uIEntity;
-        public UIAnimationType defaultIntroAnimationType = UIAnimationType.Instantly;
-        public UIAnimationType defaultOutroAnimationType = UIAnimationType.Instantly;
+        public UIAnimationType defaultIntroAnimationType = UIAnimationType.ScaleWithOpacity;
+        public UIAnimationType defaultOutroAnimationType = UIAnimationType.ScaleWithOpacity;
         public Ease ease = Ease.InOutQuint;
-        public float defaultAnimationDuration = 0.5f;
+        public float defaultAnimationDuration = 0.3f;
         public bool setAsLastSiblingOnShow = true;
         public bool immunityToHiding = false;
         public bool showOnStart = false;
