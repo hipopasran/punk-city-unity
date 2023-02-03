@@ -1,42 +1,35 @@
 using GLG;
 using GLG.UI;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LobbyOverlay : UIController
 {
-    public event System.Action onGameStarted;
-    [SerializeField] private TextMeshProUGUI _levelText;
-    [SerializeField] private MoneyBlock _moneyBlock;
+    public System.Action OnBattleSearchButton;
 
-    public MoneyBlock MoneyBlock => _moneyBlock;
+    [SerializeField] private PlayerInfoBlock _playerInfoBlock;
+    [SerializeField] private Button _battleSearchButton;
 
-    public int Level
-    {
-        set => _levelText.text = "Level " + value;
-    }
+
+    public PlayerInfoBlock PlayerInfoBlock => _playerInfoBlock;
+
 
     private void Awake()
     {
-        PlayerMoney.onUpdateMoney += MoneyChangedHandler;
-        _moneyBlock.Money = Kernel.Economic.PlayerMoney.Money;
-    }
-    private void Start()
-    {
-        _moneyBlock.RefreshLayout();
+        _battleSearchButton.onClick.AddListener(BattleSearchButtonHandler);
     }
     private void OnDestroy()
     {
-        PlayerMoney.onUpdateMoney += MoneyChangedHandler;
+        _battleSearchButton.onClick.RemoveAllListeners();
     }
 
-    public void StartGameHandler()
+    public void SetBattleSearchButtonInteractible(bool interactible)
     {
-        onGameStarted?.Invoke();
+        _battleSearchButton.interactable = interactible;
     }
 
-    private void MoneyChangedHandler(int money)
+    private void BattleSearchButtonHandler()
     {
-        _moneyBlock.Money = money;
+        OnBattleSearchButton?.Invoke();
     }
 }

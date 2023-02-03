@@ -26,11 +26,11 @@ public class LevelController : MonoBehaviour, IManaged
     #region PRIVATE METHODS
     private void AddHandlers()
     {
-        _lobbyOverlay.onGameStarted += GameStartedHandler;
+        
     }
     private void RemoveHandlers()
     {
-        _lobbyOverlay.onGameStarted -= GameStartedHandler;
+        
     }
     private void Win()
     {

@@ -1,9 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInfoBlock : MonoBehaviour
 {
     [SerializeField] private Image _imgAvatar;
+    [SerializeField] private TMP_Text _txtNick;
     [SerializeField] private TextBlock _leagueBlock;
     [SerializeField] private TextBlock _xpBlock;
     [SerializeField] private TextBlock _tonBlock;
@@ -18,6 +20,11 @@ public class PlayerInfoBlock : MonoBehaviour
     public PlayerInfoBlock SetAvatar(Sprite sprite)
     {
         _imgAvatar.sprite = sprite;
+        return this;
+    }
+    public PlayerInfoBlock SetNick(string value)
+    {
+        _txtNick.text = value;
         return this;
     }
     public PlayerInfoBlock SetLeagueLevel(int value)

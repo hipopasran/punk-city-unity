@@ -28,7 +28,7 @@ public class LevelsManager : MonoBehaviour
         PlayerPrefs.SetInt("levelIndex", LevelIndex);
         PlayerPrefs.SetInt("displayLevelIndex", DisplayLevelIndex);
         StartCoroutine(LoadScene(_levelsPreset.levels[LevelIndex].sceneName));
-        Kernel.UI.Get<LobbyOverlay>().Level = DisplayLevelIndex;
+        //Kernel.UI.Get<LobbyOverlay>().Level = DisplayLevelIndex;
     }
     public void RestartLevel()
     {
