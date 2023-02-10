@@ -12,7 +12,7 @@ public class BetsData
 
 public class BetSelection_Screen : UIController
 {
-    public event System.Action onClosed;
+    public event System.Action onCloseButtonClicked;
     public event System.Action<float> onBetSelected;
 
     [SerializeField] private Button[] _availableBetButtons;
@@ -20,6 +20,7 @@ public class BetSelection_Screen : UIController
     [SerializeField] private Slider _sliderCustomBet;
     [SerializeField] private Button _btnSetCustomBet;
     [SerializeField] private TMP_Text _txtCustomBet;
+    [SerializeField] private Button _btnClose;
 
     private BetsData _betsData;
 
@@ -32,6 +33,7 @@ public class BetSelection_Screen : UIController
         }
         _btnSetCustomBet.onClick.AddListener(() => CustomBetSelectedButtonHandler(Mathf.Lerp(_betsData.minCustomBet, _betsData.maxCustomBet, _sliderCustomBet.value)));
         _sliderCustomBet.onValueChanged.AddListener(CustomBetSliderValueChangedHandler);
+        _btnClose.onClick.AddListener(CloseButtonHandler);
     }
     private void OnDestroy()
     {
@@ -41,6 +43,7 @@ public class BetSelection_Screen : UIController
         }
         _btnSetCustomBet.onClick.RemoveAllListeners();
         _sliderCustomBet.onValueChanged.RemoveAllListeners();
+        _btnClose.onClick.RemoveAllListeners();
     }
 
     private void BetSelectedButtonHandler(float bet)
@@ -54,5 +57,9 @@ public class BetSelection_Screen : UIController
     private void CustomBetSliderValueChangedHandler(float value)
     {
         _txtCustomBet.text = "—¬Œﬂ —“¿¬ ¿: $" + Mathf.Lerp(_betsData.minCustomBet, _betsData.maxCustomBet, _sliderCustomBet.value).ToString();
+    }
+    private void CloseButtonHandler()
+    {
+        onCloseButtonClicked?.Invoke();
     }
 }

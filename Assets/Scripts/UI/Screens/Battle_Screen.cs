@@ -3,11 +3,20 @@ using UnityEngine;
 
 public class Battle_Screen : UIController
 {
-    public event System.Action onNext;
+    [SerializeField] private UICard _cardPrefab;
+    [SerializeField] private EffectCard _effectPrefab;
+    [SerializeField] private RectTransform _cardsContainer;
+    [SerializeField] private RectTransform _effectsContainer;
 
-    public Battle_Screen OnNext(System.Action callback)
+    public Battle_Screen AddEffect(EffectData effectData)
     {
-        onNext += callback;
+
         return this;
     }
+    public Battle_Screen AddCard(CardData cardData)
+    {
+
+        return this;
+    }
+
 }
