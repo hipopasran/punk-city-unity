@@ -43,106 +43,13 @@ SpriteAtlas:
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
-    packables:
-    - {fileID: 102900000, guid: 1b992b65105cc1a41b3b819108bd4891, type: 3}
+    packables: []
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300000, guid: 46fd9590e2b367f4fa92041fe6149ce9, type: 3}
-  - {fileID: 21300000, guid: 4d91c8b0e39e940459d03157fba3bb8f, type: 3}
-  - {fileID: 21300000, guid: c4caea81d2abbad4e8993adfd9b34da3, type: 3}
-  - {fileID: 21300000, guid: f67a65c1bbf4f714c929553d18c403db, type: 3}
-  - {fileID: 21300000, guid: 4f4e2f326a7ca9047828c4ca59b3ebee, type: 3}
-  - {fileID: 21300000, guid: b95b3c42b958ae14da8095568175b02d, type: 3}
-  - {fileID: 21300000, guid: 27950e62655b68543b0721ebace96d78, type: 3}
-  - {fileID: 21300000, guid: 1cb43c5364bf4d343a92d2423cc0617d, type: 3}
-  - {fileID: 21300000, guid: 68df49935a649624fb046d4ade152958, type: 3}
-  - {fileID: 21300000, guid: 2c202844c3a1a9f4e82ca1894d4ce235, type: 3}
-  - {fileID: 21300000, guid: e3d6bc54551d6104485ef49cfe1610d1, type: 3}
-  - {fileID: 21300000, guid: 77798484e4ab0f7498049e8835f680b0, type: 3}
-  - {fileID: 21300000, guid: c0d1a905e30fb60439286e4b8ead910a, type: 3}
-  - {fileID: 21300000, guid: bbc86d257e9452f42aac33087fb95096, type: 3}
-  - {fileID: 21300000, guid: bb176d16638ead14b8b67841059ff2af, type: 3}
-  - {fileID: 21300000, guid: 103a2d764eab86f4796a15f9443e72d2, type: 3}
-  - {fileID: 21300000, guid: 22068a966fe3e55448eaccac8a6f0d90, type: 3}
-  - {fileID: 21300000, guid: 709899a6745cf904b9d5a585e77aa1f3, type: 3}
-  - {fileID: 21300000, guid: 7587dcd66e9dfb049a10a239a683a028, type: 3}
-  - {fileID: 21300000, guid: 2996af37a9d521a44b145bf8973044e7, type: 3}
-  - {fileID: 21300000, guid: 7b660677f62a67c46b1820420b22457a, type: 3}
-  - {fileID: 21300000, guid: a0a8aa779e26c9940bcbe04e6af3a57d, type: 3}
-  - {fileID: 21300000, guid: 7f8b3897217006d429c1e9cfe30ce1d2, type: 3}
-  - {fileID: 21300000, guid: 28bc7bb71e3573f408704b79e2c08eb8, type: 3}
-  - {fileID: 21300000, guid: 0d5a99d73b3589744bfded4b24076d07, type: 3}
-  - {fileID: 21300000, guid: f78a3dd7a3ee70d439b7ffed81a4d871, type: 3}
-  - {fileID: 21300000, guid: fa164ed7ea45bd542b1dfedf953d1c24, type: 3}
-  - {fileID: 21300000, guid: fa8b16f782efea44fb871567a5abe1d6, type: 3}
-  - {fileID: 21300000, guid: 553cdbb88cc4d6f48a655aa6ae191b1a, type: 3}
-  - {fileID: 21300000, guid: d8958619591c1b1469acabd7756a4e00, type: 3}
-  - {fileID: 21300000, guid: 72d313299768cab43972a5a582ef07a4, type: 3}
-  - {fileID: 21300000, guid: dfb58f393f4bfb648b635e7f25975cab, type: 3}
-  - {fileID: 21300000, guid: d3a969f95e516284da65d41b39b19852, type: 3}
-  - {fileID: 21300000, guid: e740040a69909464d8a1281ac809d19c, type: 3}
-  - {fileID: 21300000, guid: 9d6943aac413aec4a9a7be9f6e848bb6, type: 3}
-  - {fileID: 21300000, guid: 582d0ada54b87a742b23ed963e5608cc, type: 3}
-  - {fileID: 21300000, guid: d12a1b0bcdf2e09458931ef8b7664191, type: 3}
-  - {fileID: 21300000, guid: 7d4f861bc461f4f45b30829c8afabdab, type: 3}
-  - {fileID: 21300000, guid: efb07cdbc0c0b8144975e569b03a81cf, type: 3}
-  - {fileID: 21300000, guid: 55a0097c445cea84793aed781757ae17, type: 3}
-  - {fileID: 21300000, guid: b52d0f5dcf601cd49a18eaa985a5b832, type: 3}
-  - {fileID: 21300000, guid: 4a31057d9e64d2e418c372757e9d4cf6, type: 3}
-  - {fileID: 21300000, guid: 84a86a1ef9102af4eb0a4b5beb93c1bd, type: 3}
-  - {fileID: 21300000, guid: 6eb0138e77aa4f5409b15c1c690b6f06, type: 3}
-  - {fileID: 21300000, guid: 792931ae82e42d448abc95aac0e0f113, type: 3}
-  - {fileID: 21300000, guid: f06c64cf22bb1d34fbadaed9488b00b5, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - LoseBack
-  - SEMIAUTO
-  - ReloadTimer
-  - LEVEL -
-  - Failed
-  - CastleLiveBar1
-  - BackSelectCards
-  - Next
-  - vibration 2
-  - ENEMY DOWN
-  - Completed
-  - Shop_GunIcon
-  - AUTOMATIC
-  - LashShop_ON
-  - Coin 2
-  - Shopbackground
-  - PLay
-  - OFFON
-  - MINIGUN
-  - LashShop_Off
-  - StageCount2
-  - OFFON BACK
-  - SHOOTGUN
-  - Fight
-  - SelectOneCard
-  - CastleLiveBar2
-  - BazukaButton
-  - LiveBar_Enemy1
-  - WinBack
-  - StageCount1
-  - CoinShop
-  - sound 2
-  - Crossair
-  - Bullet
-  - REWARD
-  - EnemyDown
-  - Closed
-  - Gear 3
-  - Cups Win
-  - Magazem
-  - Menu Background
-  - Build Button
-  - Naim
-  - Base
-  - LiveBar_Enemy2
-  - TryAgain
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_RenderDataMap: {}
   m_Tag: MainUi_Atlas
   m_IsVariant: 0
