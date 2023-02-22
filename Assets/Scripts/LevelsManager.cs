@@ -5,52 +5,84 @@ using UnityEngine.SceneManagement;
 
 public class LevelsManager : MonoBehaviour
 {
-    [SerializeField] private LevelsPreset _levelsPreset;
-    public int LevelIndex { get; private set; } = -1;
-    public int DisplayLevelIndex { get; private set; } = 0;
+    public event System.Action<(int levelIndex, string sceneName)> onLevelUnloaded;
+    public event System.Action<(int levelIndex, string sceneName)> onLevelLoaded;
 
-    private string _currentScene;
+    [SerializeField] private LevelsPreset _levelsPreset;
+    public int CurrentLevelIndex { get; private set; } = 0;
+    public int CurrentDisplayLevelIndex { get; private set; } = 1;
+    public int PrevLevelIndex { get; private set; }
+    public int PrevDisplayLevelIndex { get; private set; }
+    public string CurrentScene { get; private set; }
+    public string PrevScene { get; private set; }
 
     private void Start()
     {
-        LevelIndex = PlayerPrefs.GetInt("levelIndex", 0) - 1;
-        DisplayLevelIndex = PlayerPrefs.GetInt("displayLevelIndex", 1) - 1;
-        NextLevel();
+        CurrentLevelIndex = PlayerPrefs.GetInt("levelIndex", 0);
+        CurrentDisplayLevelIndex = PlayerPrefs.GetInt("displayLevelIndex", 1);
+        UnloadCurrentAndLoad(CurrentLevelIndex, false, true);
     }
-    public void NextLevel()
+    public void NextLevel(bool autoShowLobby = true)
     {
-        LevelIndex++;
-        DisplayLevelIndex++;
-        if (LevelIndex > _levelsPreset.levels.Length - 1)
+        UnloadCurrentAndLoad(CurrentLevelIndex + 1, true, autoShowLobby);
+    }
+    public void RestartLevel(bool autoShowLobby = true)
+    {
+        UnloadCurrentAndLoad(CurrentLevelIndex, false, autoShowLobby);
+    }
+    public void UnloadCurrentAndLoad(string sceneName, bool incrementDisplayLevelIndex = true, bool autoShowLobby = true)
+    {
+        int index = 0;
+        for (int i = 0; i < _levelsPreset.levels.Length; i++)
         {
-            LevelIndex = 0;
+            LevelData item = _levelsPreset.levels[i];
+            if (item.sceneName == sceneName)
+            {
+                index = i;
+                break;
+            }
         }
-        PlayerPrefs.SetInt("levelIndex", LevelIndex);
-        PlayerPrefs.SetInt("displayLevelIndex", DisplayLevelIndex);
-        StartCoroutine(LoadScene(_levelsPreset.levels[LevelIndex].sceneName));
-        //Kernel.UI.Get<LobbyOverlay>().Level = DisplayLevelIndex;
+        UnloadCurrentAndLoad(index, incrementDisplayLevelIndex, autoShowLobby);
     }
-    public void RestartLevel()
+    public void UnloadCurrentAndLoad(int levelIndex, bool incrementDisplayLevelIndex = true, bool autoShowLobby = true)
     {
-        StartCoroutine(LoadScene(_currentScene));
+        PrevLevelIndex = CurrentLevelIndex;
+        PrevScene = CurrentScene;
+        CurrentLevelIndex = levelIndex;
+        if (incrementDisplayLevelIndex)
+        {
+            CurrentDisplayLevelIndex++;
+        }
+        if (CurrentLevelIndex > _levelsPreset.levels.Length - 1)
+        {
+            CurrentLevelIndex = 0;
+        }
+        PlayerPrefs.SetInt("levelIndex", CurrentLevelIndex);
+        PlayerPrefs.SetInt("displayLevelIndex", CurrentDisplayLevelIndex);
+        CurrentScene = _levelsPreset.levels[CurrentLevelIndex].sceneName;
+        StartCoroutine(LoadScene(CurrentScene));
     }
 
-
-
-    IEnumerator LoadScene(string name)
+    IEnumerator LoadScene(string name, bool autoShowLobby = true)
     {
         Kernel.UI.mainCamera.transform.SetParent(Kernel.UI.transform);
         Kernel.UI.HideAll();
-        Kernel.UI.ShowUI<LoadingOverlay>();
-        if (!string.IsNullOrEmpty(_currentScene))
+        bool loadingShowed = false;
+        Kernel.UI.ShowUI<LoadingOverlay>().OnShowed(() =>
         {
-            AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(_currentScene);
+            loadingShowed = true;
+        });
+        while (!loadingShowed) yield return null;
+        if (!string.IsNullOrEmpty(CurrentScene))
+        {
+            AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(CurrentScene);
             while (!asyncUnload.isDone)
             {
                 yield return null;
             }
+            onLevelUnloaded?.Invoke((PrevLevelIndex, PrevScene));
         }
-        _currentScene = name;
+        CurrentScene = name;
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
         while (!asyncLoad.isDone)
         {
@@ -59,7 +91,10 @@ public class LevelsManager : MonoBehaviour
         asyncLoad.allowSceneActivation = true;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(name));
         yield return new WaitForSeconds(0.5f);
-        Kernel.UI.HideUI<LoadingOverlay>();
-        Kernel.UI.ShowUI<LobbyOverlay>();
+        onLevelLoaded?.Invoke((CurrentLevelIndex, CurrentScene));
+        bool loadingHided = false;
+        Kernel.UI.HideUI<LoadingOverlay>().OnHided(() => { loadingHided = true; });
+        while (!loadingHided) yield return null;
+        if (autoShowLobby) Kernel.UI.ShowUI<LobbyOverlay>();
     }
 }

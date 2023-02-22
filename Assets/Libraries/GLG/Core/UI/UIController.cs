@@ -27,6 +27,8 @@ namespace GLG.UI
         public event Action onShowedE;
         public UnityEvent onHided;
         public event Action onHidedE;
+        protected event Action _onShowedOnce;
+        protected event Action _onHidedOnce;
         [SerializeField] private Dictionary<Type, UIController> _subcontrollers = new Dictionary<Type, UIController>();
         [SerializeField] protected Transform _container;
         [SerializeField] private CanvasGroup _canvasGroup;
@@ -116,8 +118,6 @@ namespace GLG.UI
                     break;
             }
             IsShowing = true;
-            onShowed.Invoke();
-            onShowedE?.Invoke();
         }
         public void Hide()
         {
@@ -201,15 +201,36 @@ namespace GLG.UI
                     break;
             }
             IsShowing = false;
-            onHided.Invoke();
-            onHidedE?.Invoke();
         }
         public T Get<T>() where T : UIController => (T)_subcontrollers[typeof(T)];
+        
+        public UIController OnShowed(System.Action callback)
+        {
+            _onShowedOnce += callback;
+            return this;
+        }
+        public UIController OnHided(System.Action callback)
+        {
+            _onHidedOnce += callback;
+            return this;
+        }
 
 
         protected virtual void OnStartShow() { }
-        protected virtual void OnEndShow() { }
+        protected virtual void OnEndShow() 
+        {
+            onShowed.Invoke();
+            onShowedE?.Invoke();
+            _onShowedOnce?.Invoke();
+            _onShowedOnce = null;
+        }
         protected virtual void OnStartHide() { }
-        protected virtual void OnEndHide() { }
+        protected virtual void OnEndHide() 
+        {
+            onHided.Invoke();
+            onHidedE?.Invoke();
+            _onHidedOnce?.Invoke();
+            _onHidedOnce = null;
+        }
     }
 }

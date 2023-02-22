@@ -33,7 +33,7 @@ public class MainScenario : MonoBehaviour
         {
 
             case GameState.Initialization:
-                //yield return StartCoroutine(InitializationScenario());
+                
                 ChangeState(GameState.Lobby);
                 break;
 

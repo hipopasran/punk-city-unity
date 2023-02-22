@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: LevelPreset_Main
   m_EditorClassIdentifier: 
   levels:
-  - sceneName: Level_1
+  - sceneName: Lobby
+  - sceneName: Game
