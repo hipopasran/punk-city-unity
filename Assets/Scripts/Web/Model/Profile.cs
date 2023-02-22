@@ -1,5 +1,11 @@
 using UnityEngine;
 
+[System.Serializable]
+public class ProfileResponse
+{
+    public Profile profile; 
+}
+[System.Serializable]
 public class Profile
 {
     public int id;
@@ -10,6 +16,5 @@ public class Profile
     public int praxis_balance;
     public string profile_url;
     public float ton_balance;
-
     public Sprite avatar;
 }

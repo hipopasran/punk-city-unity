@@ -2,25 +2,24 @@ using GLG;
 using System.Collections;
 using UnityEngine;
 
-public class LobbyScenario : MonoBehaviour, IScenario
+public class LobbyScenario : BaseScenario
 {
     private bool _canSearchBattle = true;
     private bool _startSearchBattle = false;
     private IEnumerator _updateLobbyParticipantsRoutine;
 
-    public bool IsComplete { get; private set; }
-    public bool IsError { get; private set; }
-    public bool IsRunning { get; private set; }
-    public string ErrorMessage { get; private set; }
+    public override bool IsError { get; protected set; }
+    public override bool IsRunning { get; protected set; }
+    public override string ErrorMessage { get; protected set; }
 
-    public void StartScenario()
+    public override void StartScenario()
     {
         if (IsRunning) return;
         IsRunning = true;
         Kernel.CoroutinesObject.StartCoroutine(Scenario());
     }
 
-    public void StopScenario()
+    public override void StopScenario()
     {
         if (!IsRunning) return;
         IsRunning = false;
@@ -37,19 +36,18 @@ public class LobbyScenario : MonoBehaviour, IScenario
         UpdateVisualPlayerInfo();
         _updateLobbyParticipantsRoutine = UpdateLobbyParticipants_SubScenario();
         Kernel.CoroutinesObject.StartCoroutine(_updateLobbyParticipantsRoutine);
-
-        Kernel.UI.Get<LoadingOverlay>().Hide();
-
+        Kernel.UI.ShowUI<LobbyOverlay>();
         while (!_startSearchBattle)
         {
             yield return null;
         }
+        IsRunning = false;
         yield break;
     }
 
     private IEnumerator UpdateLobbyParticipants_SubScenario()
     {
-        Web.Request request = Web.SendRequest("/lobby_participants", Web.RequestKind.Get);
+        Web.Request request = Web.SendRequest("/api/lobby_participants", Web.RequestKind.Get);
         while (!request.IsComplete)
         {
             yield return null;
@@ -71,7 +69,7 @@ public class LobbyScenario : MonoBehaviour, IScenario
         Profile player = SharedWebData.Instance.playerProfile;
         Kernel.UI.Get<LobbyOverlay>().PlayerInfoBlock
         .SetAvatar(player.avatar)
-        .SetXp(player.experience)
+        .SetXp(player.experience, player.new_level_threshold)
         .SetNick(player.identification)
         .SetPunk(player.praxis_balance)
         .SetTon(player.ton_balance)
@@ -85,6 +83,7 @@ public class LobbyScenario : MonoBehaviour, IScenario
     {
         Debug.Log("[LobbyScenario] ERROR: " + error);
         IsError = true;
+        IsRunning = false;
         ErrorMessage = error;
         _canSearchBattle = false;
         StopScenario();

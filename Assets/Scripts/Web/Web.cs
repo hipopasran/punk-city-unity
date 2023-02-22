@@ -1,5 +1,7 @@
 using GLG;
+using Newtonsoft.Json;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -16,19 +18,42 @@ public static class Web
         public string Result { get; private set; }
         public Texture2D ResultTexture { get; private set; }
 
-        public void Send(string uri, string token, RequestKind requstKind, (string key, string value)[] data = null)
+        public void Send(string uri, string token, RequestKind requestKind, (string key, string value)[] queryParams = null, (string key, string value)[] data = null)
         {
+            Debug.Log($"[Request] Try to send request. URI={uri} | token={token} | requestKind={requestKind}");
+            Debug.Log("[Request] Query params:");
+            string query = "?";
+            List<(string key, string value)> _query = new List<(string key, string value)>();
+            _query.Add(("token", token));
+            if (queryParams != null && queryParams.Length > 0)
+            {
+                _query.AddRange(queryParams);
+            }
+            if (_query != null)
+            {
+                foreach (var item in _query)
+                {
+                    Debug.Log($"{item.key}={item.value}");
+                    if (query.Length > 1)
+                    {
+                        query += '&';
+                    }
+                    query += $"{item.key}={item.value}";
+                }
+            }
+
+            Debug.Log("[Request] Data:");
             WWWForm form = new WWWForm();
-            form.AddField("token", token);
             if (data != null)
             {
                 foreach (var item in data)
                 {
                     form.AddField(item.key, item.value);
+                    Debug.Log($"{item.key}={item.value}");
                 }
             }
 
-            _routine = SendRequest(uri, requstKind, form);
+            _routine = SendRequest(uri, requestKind, query, form);
             Kernel.CoroutinesObject.StartCoroutine(_routine);
         }
 
@@ -40,8 +65,10 @@ public static class Web
             }
         }
 
-        private IEnumerator SendRequest(string uri, RequestKind requestKind, WWWForm form)
+        private IEnumerator SendRequest(string uri, RequestKind requestKind, string query, WWWForm data)
         {
+            uri += query;
+            Debug.Log("[SendRequest] URI: " + uri);
             switch (requestKind)
             {
                 case RequestKind.Get:
@@ -62,7 +89,7 @@ public static class Web
                     }
                     break;
                 case RequestKind.Post:
-                    using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+                    using (UnityWebRequest www = UnityWebRequest.Post(uri, data))
                     {
                         www.downloadHandler = new DownloadHandlerBuffer();
                         yield return www.SendWebRequest();
@@ -107,13 +134,15 @@ public static class Web
                         else
                         {
                             IsError = false;
-                            ResultTexture = ((DownloadHandlerTexture) www.downloadHandler).texture;
+                            ResultTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
                         }
                     }
                     break;
                 default:
                     break;
             }
+            Debug.Log("[Request] Result: " + Result);
+            Debug.Log("------------------------------------------------------------------");
             IsComplete = true;
             yield break;
         }

@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class InitializationScenario : MonoBehaviour, IScenario
 {
-    [SerializeField] private string _url = "https://punk-verse-staging.thesmartnik.com/";
-
-    public bool IsComplete { get; private set; }
+    [SerializeField] private string _url = "https://punk-verse-staging.thesmartnik.com";
     public bool IsError { get; private set; }
     public bool IsRunning { get; private set; }
     public string ErrorMessage { get; private set; }
@@ -24,7 +22,7 @@ public class InitializationScenario : MonoBehaviour, IScenario
         Kernel.CoroutinesObject.StopCoroutine(Scenario());
     }
 
-    
+
     private IEnumerator Scenario()
     {
         Kernel.UI.ShowUI<LoadingOverlay>();
@@ -42,29 +40,43 @@ public class InitializationScenario : MonoBehaviour, IScenario
         }
         else
         {
-            SharedWebData.Instance.playerProfile = Web.Parse<Profile>(profileRequest.Result);
+            SharedWebData.Instance.playerProfile = Web.Parse<ProfileResponse>(profileRequest.Result).profile;
+            
+            Debug.Log($"[playerProfile] avatar:{SharedWebData.Instance.playerProfile.avatar}");
+            Debug.Log($"[playerProfile] experience:{SharedWebData.Instance.playerProfile.experience}");
+            Debug.Log($"[playerProfile] id:{SharedWebData.Instance.playerProfile.id}");
+            Debug.Log($"[playerProfile] identification:{SharedWebData.Instance.playerProfile.identification}");
+            Debug.Log($"[playerProfile] level:{SharedWebData.Instance.playerProfile.level}");
+            Debug.Log($"[playerProfile] new_level_threshold:{SharedWebData.Instance.playerProfile.new_level_threshold}");
+            Debug.Log($"[playerProfile] praxis_balance:{SharedWebData.Instance.playerProfile.praxis_balance}");
+            Debug.Log($"[playerProfile] profile_url:{SharedWebData.Instance.playerProfile.profile_url}");
+            Debug.Log($"[playerProfile] ton_balance:{SharedWebData.Instance.playerProfile.ton_balance}");
         }
         // get player avatar
-        Web.Request avatarRequest = Web.SendRequest(SharedWebData.Instance.playerProfile.profile_url, Web.RequestKind.Get);
-        while (!avatarRequest.IsComplete)
+        if (!string.IsNullOrEmpty(SharedWebData.Instance.playerProfile.profile_url))
         {
-            yield return null;
+            Web.Request avatarRequest = Web.SendRequest(SharedWebData.Instance.playerProfile.profile_url, Web.RequestKind.Get);
+            while (!avatarRequest.IsComplete)
+            {
+                yield return null;
+            }
+            if (avatarRequest.IsError)
+            {
+                OnError(avatarRequest.Result);
+            }
+            else
+            {
+                SharedWebData.Instance.playerProfile.avatar = avatarRequest.ResultTexture.ToSprite();
+            }
         }
-        if (avatarRequest.IsError)
-        {
-            OnError(avatarRequest.Result);
-        }
-        else
-        {
-            SharedWebData.Instance.playerProfile.avatar = avatarRequest.ResultTexture.ToSprite();
-        }
-
+        IsRunning = false;
         yield break;
     }
 
     private void OnError(string error)
     {
         Debug.Log("[LobbyScenario] ERROR: " + error);
+        IsRunning = false;
         IsError = true;
         ErrorMessage = error;
         StopScenario();

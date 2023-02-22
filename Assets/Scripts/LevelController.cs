@@ -37,7 +37,7 @@ public class LevelController : MonoBehaviour, IManaged
         _ingameScreen.Hide();
         WinScreen winScreen = Kernel.UI.ShowUI<WinScreen>();
         winScreen.LevelBlock.Value = Kernel.LevelsManager.CurrentDisplayLevelIndex.ToString();
-        winScreen.OnNext(Kernel.LevelsManager.NextLevel);
+        //winScreen.OnNext(Kernel.LevelsManager.NextLevel);
         Kernel.UI.HideUI<JoystickOverlay>().joystick.ForceStop();
     }
     private void Fail()
@@ -45,7 +45,7 @@ public class LevelController : MonoBehaviour, IManaged
         _ingameScreen.Hide();
         FailScreen failScreen = Kernel.UI.ShowUI<FailScreen>();
         failScreen.LevelBlock.Value = Kernel.LevelsManager.CurrentDisplayLevelIndex.ToString();
-        failScreen.OnNext(Kernel.LevelsManager.RestartLevel);
+        //failScreen.OnNext(Kernel.LevelsManager.RestartLevel);
         Kernel.UI.HideUI<JoystickOverlay>().joystick.ForceStop();
     }
     

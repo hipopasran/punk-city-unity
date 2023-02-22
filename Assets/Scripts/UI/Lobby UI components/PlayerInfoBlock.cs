@@ -32,14 +32,9 @@ public class PlayerInfoBlock : MonoBehaviour
         _leagueBlock.Value = value.ToString();
         return this;
     }
-    public PlayerInfoBlock SetXp(int value)
+    public PlayerInfoBlock SetXp(int value, int maxValue)
     {
-        _xpBlock.Value = value.ToString();
-        return this;
-    }
-    public PlayerInfoBlock SetMaxXp(int value)
-    {
-        // todo;
+        _xpBlock.Value = value.ToString() + '/' + maxValue.ToString();
         return this;
     }
     public PlayerInfoBlock SetTon(float value)

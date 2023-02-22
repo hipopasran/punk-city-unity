@@ -1,18 +1,15 @@
 using GLG;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { Initialization, Lobby, EnemySearching, Briefing, Game, Debriefing}
+public enum GameState { Initialization, Lobby, EnemySearching, Briefing, Game, Debriefing }
 
 public class MainScenario : MonoBehaviour
 {
+    [SerializeField] private InitializationScenario _initializationScenario;
     [SerializeField] private bool _autoStartScenario = true;
     [SerializeField] private GameState _startState = GameState.Initialization;
 
-
-    private Profile _user;
-    private Profile _enemy;
     private GameState _currentState;
     private GameState _prevState = GameState.Initialization;
 
@@ -29,49 +26,77 @@ public class MainScenario : MonoBehaviour
     {
         ChangeState(gameState);
         yield return null;
-        switch (gameState)
+        while (true)
         {
+            switch (_currentState)
+            {
 
-            case GameState.Initialization:
-                
-                ChangeState(GameState.Lobby);
-                break;
-
-
-            case GameState.Lobby:
-                //yield return StartCoroutine(LobbyScenario());
-                ChangeState(GameState.EnemySearching);
-                break;
-
-
-            case GameState.EnemySearching:
-                yield return StartCoroutine(EnemySearchingScenario());
-                ChangeState(GameState.Briefing);
-                break;
+                case GameState.Initialization:
+                    Debug.Log("=====     Initialization     ===== ");
+                    _initializationScenario.StartScenario();
+                    while (_initializationScenario.IsRunning)
+                    {
+                        yield return null;
+                    }
+                    ChangeState(GameState.Lobby);
+                    break;
 
 
-            case GameState.Briefing:
-                yield return StartCoroutine(BriefingScenario());
-                ChangeState(GameState.Game);
-                break;
+                case GameState.Lobby:
+                    Debug.Log("=====     Lobby     ===== ");
+                    Kernel.LevelsManager.UnloadCurrentAndLoad("Lobby");
+                    while (Kernel.LevelsManager.IsLoading)
+                    {
+                        yield return null;
+                    }
+                    ChangeState(GameState.EnemySearching);
+                    LobbyScenario lobbyScenario = LevelContainer.Instance.MainScenario as LobbyScenario;
+                    lobbyScenario.StartScenario();
+                    while (lobbyScenario.IsRunning)
+                    {
+                        yield return null;
+                    }
+                    yield break;
+                    break;
 
 
-            case GameState.Game:
-                yield return StartCoroutine(GameScenario());
-                ChangeState(GameState.Debriefing);
-                break;
+                case GameState.EnemySearching:
+                    Debug.Log("=====     EnemySearching     ===== ");
+                    Kernel.LevelsManager.UnloadCurrentAndLoad("Lobby");
+                    yield return StartCoroutine(EnemySearchingScenario());
+                    ChangeState(GameState.Briefing);
+                    break;
 
 
-            case GameState.Debriefing:
-                yield return StartCoroutine(DebriefingScenario());
-                StartCoroutine(Scenario(GameState.Lobby));
-                break;
+                case GameState.Briefing:
+                    Debug.Log("=====     Briefing     ===== ");
+                    Kernel.LevelsManager.UnloadCurrentAndLoad("Game");
+                    yield return StartCoroutine(BriefingScenario());
+                    ChangeState(GameState.Game);
+                    break;
 
 
-            default:
-                break;
+                case GameState.Game:
+                    Debug.Log("=====     Game     ===== ");
+                    Kernel.LevelsManager.UnloadCurrentAndLoad("Game");
+                    yield return StartCoroutine(GameScenario());
+                    ChangeState(GameState.Debriefing);
+                    break;
+
+
+                case GameState.Debriefing:
+                    Debug.Log("=====     Debriefing     ===== ");
+                    Kernel.LevelsManager.UnloadCurrentAndLoad("Game");
+                    yield return StartCoroutine(DebriefingScenario());
+                    StartCoroutine(Scenario(GameState.Lobby));
+                    break;
+
+
+                default:
+                    break;
+            }
+            yield return null;
         }
-        yield break;
     }
 
     private void ChangeState(GameState nextState)

@@ -9,18 +9,20 @@ public class LevelsManager : MonoBehaviour
     public event System.Action<(int levelIndex, string sceneName)> onLevelLoaded;
 
     [SerializeField] private LevelsPreset _levelsPreset;
+    [SerializeField] private bool _autoLoadLastLevel = true;
     public int CurrentLevelIndex { get; private set; } = 0;
     public int CurrentDisplayLevelIndex { get; private set; } = 1;
     public int PrevLevelIndex { get; private set; }
     public int PrevDisplayLevelIndex { get; private set; }
     public string CurrentScene { get; private set; }
     public string PrevScene { get; private set; }
+    public bool IsLoading { get; private set; }
 
     private void Start()
     {
         CurrentLevelIndex = PlayerPrefs.GetInt("levelIndex", 0);
         CurrentDisplayLevelIndex = PlayerPrefs.GetInt("displayLevelIndex", 1);
-        UnloadCurrentAndLoad(CurrentLevelIndex, false, true);
+        if(_autoLoadLastLevel) UnloadCurrentAndLoad(CurrentLevelIndex, false, true);
     }
     public void NextLevel(bool autoShowLobby = true)
     {
@@ -65,17 +67,18 @@ public class LevelsManager : MonoBehaviour
 
     IEnumerator LoadScene(string name, bool autoShowLobby = true)
     {
+        IsLoading = true;
         Kernel.UI.mainCamera.transform.SetParent(Kernel.UI.transform);
         Kernel.UI.HideAll();
         bool loadingShowed = false;
-        Kernel.UI.ShowUI<LoadingOverlay>().OnShowed(() =>
+        Kernel.UI.ShowUI<LoadingOverlay>(() =>
         {
             loadingShowed = true;
         });
         while (!loadingShowed) yield return null;
-        if (!string.IsNullOrEmpty(CurrentScene))
+        if (!string.IsNullOrEmpty(PrevScene))
         {
-            AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(CurrentScene);
+            AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(PrevScene);
             while (!asyncUnload.isDone)
             {
                 yield return null;
@@ -91,6 +94,7 @@ public class LevelsManager : MonoBehaviour
         asyncLoad.allowSceneActivation = true;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(name));
         yield return new WaitForSeconds(0.5f);
+        IsLoading = false;
         onLevelLoaded?.Invoke((CurrentLevelIndex, CurrentScene));
         bool loadingHided = false;
         Kernel.UI.HideUI<LoadingOverlay>().OnHided(() => { loadingHided = true; });
