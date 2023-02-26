@@ -1,5 +1,6 @@
 using GLG;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LobbyScenario : BaseScenario
@@ -16,6 +17,7 @@ public class LobbyScenario : BaseScenario
     {
         if (IsRunning) return;
         IsRunning = true;
+        Kernel.UI.mainCamera.transform.SetPositionAndRotation(LevelContainer.Instance.CameraPoint.position, LevelContainer.Instance.CameraPoint.rotation);
         Kernel.CoroutinesObject.StartCoroutine(Scenario());
     }
 
@@ -74,10 +76,21 @@ public class LobbyScenario : BaseScenario
         .SetPunk(player.praxis_balance)
         .SetTon(player.ton_balance)
         .SetLeagueLevel(player.level);
+        LobbyUnitsSpawner spawner = LevelContainer.Instance.LobbyUnitsSpawner;
+        spawner.SpawnPlayer(player);
     }
     private void UpdateVisualLobbyParticipants()
     {
+        List<Profile> participantsProfiles = new List<Profile>(SharedWebData.Instance.lastLobbyParticipants.participants);
+        LobbyUnitsSpawner spawner = LevelContainer.Instance.LobbyUnitsSpawner;
+        int unitsToSpawn = Mathf.Min(spawner.OtherSlotsCount, participantsProfiles.Count);
 
+        for (int i = 0; i < unitsToSpawn; i++)
+        {
+            int randomIndex = Random.Range(0, participantsProfiles.Count);
+            spawner.SpawnOtherUnit(participantsProfiles[randomIndex]);
+            participantsProfiles.RemoveAt(randomIndex);
+        }
     }
     private void OnError(string error)
     {

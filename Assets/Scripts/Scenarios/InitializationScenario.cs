@@ -41,16 +41,6 @@ public class InitializationScenario : MonoBehaviour, IScenario
         else
         {
             SharedWebData.Instance.playerProfile = Web.Parse<ProfileResponse>(profileRequest.Result).profile;
-            
-            Debug.Log($"[playerProfile] avatar:{SharedWebData.Instance.playerProfile.avatar}");
-            Debug.Log($"[playerProfile] experience:{SharedWebData.Instance.playerProfile.experience}");
-            Debug.Log($"[playerProfile] id:{SharedWebData.Instance.playerProfile.id}");
-            Debug.Log($"[playerProfile] identification:{SharedWebData.Instance.playerProfile.identification}");
-            Debug.Log($"[playerProfile] level:{SharedWebData.Instance.playerProfile.level}");
-            Debug.Log($"[playerProfile] new_level_threshold:{SharedWebData.Instance.playerProfile.new_level_threshold}");
-            Debug.Log($"[playerProfile] praxis_balance:{SharedWebData.Instance.playerProfile.praxis_balance}");
-            Debug.Log($"[playerProfile] profile_url:{SharedWebData.Instance.playerProfile.profile_url}");
-            Debug.Log($"[playerProfile] ton_balance:{SharedWebData.Instance.playerProfile.ton_balance}");
         }
         // get player avatar
         if (!string.IsNullOrEmpty(SharedWebData.Instance.playerProfile.profile_url))

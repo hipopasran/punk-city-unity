@@ -5968,6 +5968,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4300e61c3ddd044a79b3a80850f91e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerProfile:
+    id: 0
+    experience: 0
+    identification: 
+    level: 0
+    new_level_threshold: 0
+    praxis_balance: 0
+    profile_url: 
+    ton_balance: 0
+    avatar: {fileID: 0}
+  lastEnemyProfile:
+    id: 0
+    experience: 0
+    identification: 
+    level: 0
+    new_level_threshold: 0
+    praxis_balance: 0
+    profile_url: 
+    ton_balance: 0
+    avatar: {fileID: 0}
 --- !u!4 &1013387714
 Transform:
   m_ObjectHideFlags: 0
