@@ -32,7 +32,7 @@ public class MainScenario : MonoBehaviour
             {
 
                 case GameState.Initialization:
-                    Debug.Log("=====     Initialization     ===== ");
+                    Debug.Log("=====     INITIALIZATION SCENARIO    ===== ");
                     _initializationScenario.StartScenario();
                     while (_initializationScenario.IsRunning)
                     {
@@ -43,7 +43,7 @@ public class MainScenario : MonoBehaviour
 
 
                 case GameState.Lobby:
-                    Debug.Log("=====     Lobby     ===== ");
+                    Debug.Log("=====     LOBBY SCENARIO    ===== ");
                     Kernel.LevelsManager.UnloadCurrentAndLoad("Lobby");
                     while (Kernel.LevelsManager.IsLoading)
                     {
@@ -61,7 +61,7 @@ public class MainScenario : MonoBehaviour
 
 
                 case GameState.EnemySearching:
-                    Debug.Log("=====     EnemySearching     ===== ");
+                    Debug.Log("=====     EnemySearching SCENARIO     ===== ");
                     Kernel.LevelsManager.UnloadCurrentAndLoad("Lobby");
                     yield return StartCoroutine(EnemySearchingScenario());
                     ChangeState(GameState.Briefing);
@@ -69,7 +69,7 @@ public class MainScenario : MonoBehaviour
 
 
                 case GameState.Briefing:
-                    Debug.Log("=====     Briefing     ===== ");
+                    Debug.Log("=====     Briefing SCENARIO     ===== ");
                     Kernel.LevelsManager.UnloadCurrentAndLoad("Game");
                     yield return StartCoroutine(BriefingScenario());
                     ChangeState(GameState.Game);
@@ -77,7 +77,7 @@ public class MainScenario : MonoBehaviour
 
 
                 case GameState.Game:
-                    Debug.Log("=====     Game     ===== ");
+                    Debug.Log("=====     Game SCENARIO     ===== ");
                     Kernel.LevelsManager.UnloadCurrentAndLoad("Game");
                     yield return StartCoroutine(GameScenario());
                     ChangeState(GameState.Debriefing);
@@ -85,7 +85,7 @@ public class MainScenario : MonoBehaviour
 
 
                 case GameState.Debriefing:
-                    Debug.Log("=====     Debriefing     ===== ");
+                    Debug.Log("=====     Debriefing SCENARIO     ===== ");
                     Kernel.LevelsManager.UnloadCurrentAndLoad("Game");
                     yield return StartCoroutine(DebriefingScenario());
                     StartCoroutine(Scenario(GameState.Lobby));

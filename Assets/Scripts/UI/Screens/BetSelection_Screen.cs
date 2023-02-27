@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BetsData
 {
+    public string currency;
     public float[] availableBets;
     public float minCustomBet;
     public float maxCustomBet;
@@ -12,8 +13,8 @@ public class BetsData
 
 public class BetSelection_Screen : UIController
 {
-    public event System.Action onCloseButtonClicked;
-    public event System.Action<float> onBetSelected;
+    private event System.Action _onClosed;
+    private event System.Action<string , float> _onBetSelected;
 
     [SerializeField] private Button[] _availableBetButtons;
     [SerializeField] private TMP_Text[] _availableBetTexts;
@@ -23,6 +24,8 @@ public class BetSelection_Screen : UIController
     [SerializeField] private Button _btnClose;
 
     private BetsData _betsData;
+    private string _selecedCurrency;
+    private float _selectedBet;
 
     private void Start()
     {
@@ -46,20 +49,47 @@ public class BetSelection_Screen : UIController
         _btnClose.onClick.RemoveAllListeners();
     }
 
+    public BetSelection_Screen ApplyData(BetsData betsData)
+    {
+
+        return this;
+    }
+    public BetSelection_Screen OnBetSelected(System.Action<string, float> callback)
+    {
+        _onBetSelected += callback;
+        return this;
+    }
+    public BetSelection_Screen OnClosed(System.Action callback)
+    {
+        _onClosed += callback;
+        return this;
+    }
+
+    private void BetCyrrencyChanged(string currency)
+    {
+        _selecedCurrency = currency;
+    }
     private void BetSelectedButtonHandler(float bet)
     {
-        onBetSelected?.Invoke(bet);
+        _selectedBet = bet;
     }
     private void CustomBetSelectedButtonHandler(float bet)
     {
-        onBetSelected?.Invoke(bet);
+        _selectedBet = bet;
     }
     private void CustomBetSliderValueChangedHandler(float value)
     {
         _txtCustomBet.text = "—¬Œﬂ —“¿¬ ¿: $" + Mathf.Lerp(_betsData.minCustomBet, _betsData.maxCustomBet, _sliderCustomBet.value).ToString();
     }
+    private void ApplyBetHandler()
+    {
+        _onBetSelected?.Invoke(_selecedCurrency, _selectedBet);
+        _onBetSelected = null;
+    }
     private void CloseButtonHandler()
     {
-        onCloseButtonClicked?.Invoke();
+        Hide();
+        _onClosed?.Invoke();
+        _onClosed = null;
     }
 }

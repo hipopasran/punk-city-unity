@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class LobbyScenario : BaseScenario
 {
-    private bool _canSearchBattle = true;
     private bool _startSearchBattle = false;
     private IEnumerator _updateLobbyParticipantsRoutine;
+
+    private string _selectedCurrency;
+    private float _selectedBet;
+    private bool _readyToSearchBattle;
 
     public override bool IsError { get; protected set; }
     public override bool IsRunning { get; protected set; }
@@ -39,10 +42,11 @@ public class LobbyScenario : BaseScenario
         _updateLobbyParticipantsRoutine = UpdateLobbyParticipants_SubScenario();
         Kernel.CoroutinesObject.StartCoroutine(_updateLobbyParticipantsRoutine);
         Kernel.UI.ShowUI<LobbyOverlay>();
-        while (!_startSearchBattle)
+        while (!_readyToSearchBattle)
         {
             yield return null;
         }
+        _readyToSearchBattle = false;
         IsRunning = false;
         yield break;
     }
@@ -63,6 +67,11 @@ public class LobbyScenario : BaseScenario
             SharedWebData.Instance.lastLobbyParticipants = Web.Parse<Lobby_participants>(request.Result);
             UpdateVisualLobbyParticipants();
         }
+    }
+    private IEnumerator EnemySearching_SubScenario()
+    {
+
+        yield break;
     }
 
 
@@ -98,13 +107,26 @@ public class LobbyScenario : BaseScenario
         IsError = true;
         IsRunning = false;
         ErrorMessage = error;
-        _canSearchBattle = false;
+        _readyToSearchBattle = false;
         StopScenario();
     }
 
+    #region HANDLERS
     public void StartButtonHandler()
     {
-        if (!_canSearchBattle) return;
-        _startSearchBattle = true;
+        Kernel.UI.ShowUI<BetSelection_Screen>();
     }
+    public void BetCurrencyChangedHandler(string currency)
+    {
+        _selectedCurrency = currency;
+    }
+    public void BetChangedHandler(float value)
+    {
+        _selectedBet = value;
+    }
+    public void SearchBattleButtonHandler()
+    {
+        _readyToSearchBattle = true;
+    }
+    #endregion
 }
