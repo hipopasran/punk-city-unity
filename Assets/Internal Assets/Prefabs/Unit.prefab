@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9020961443565671075}
   - component: {fileID: 9020961443565671074}
+  - component: {fileID: 3332262692591963574}
   m_Layer: 0
   m_Name: SkinParent
   m_TagString: Untagged
@@ -41,7 +42,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9020961443565671084}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 4bcff10a3a51ff844abdf8d429c5f395, type: 3}
   m_Controller: {fileID: 9100000, guid: 787363e14ee13524ca4562d907797bea, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -52,6 +53,97 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &3332262692591963574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9020961443565671084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e78e968db5e1baa4e939c966ac4a8b7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testJumpPoint: {fileID: 0}
+  _jumpDuration: 1
+  _jumpHeight: 3
+  _jumpHightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0010223389
+      value: 0
+      inSlope: 2.1828992
+      outSlope: 2.1828992
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.038854916
+    - serializedVersion: 3
+      time: 1.0020752
+      value: 0.007862091
+      inSlope: -4.268183
+      outSlope: -4.268183
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.051099118
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _jumpMovingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0010223389
+      value: 0
+      inSlope: 2.1828992
+      outSlope: 2.1828992
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.038854916
+    - serializedVersion: 3
+      time: 1.0020752
+      value: 0.007862091
+      inSlope: -4.268183
+      outSlope: -4.268183
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.051099118
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _animator: {fileID: 9020961443565671074}
+  _objectForJumpAnimation: {fileID: 9020961443565671075}
+  _movingSpeedParameterName: MovingSpeed
+  _attackStartKey: attack_start
+  _attackPistolKey: attack_pistol
+  _attackRifleKey: attack_rifle
+  _attackShotgunKey: attack_shotgun
+  _attackBlasterKey: attack_blaster
+  _attackCircuitKey: attack_circuit
+  _attackSwordKey: attack_sword
+  _attackKatanaKey: attack_katana
+  _attackKnifeKey: attack_knife
+  _attackHammerKey: attack_hammer
+  _attackGenadeKey: attack_grenade
+  _damageStartKey: damage_start
+  _damageLightKey: damage_light
+  _damageHeavyKey: damage_heavy
+  _deathStartKey: death_start
+  _deathExplosionKey: death_explosion
+  _deathShotKey: death_shot
+  _deathMeleeKey: death_melee
+  _victoryKey: victory
+  _idleStartKey: idle_start
+  _prepareMeleeKey: prepare_melee
+  _prepareRangedKey: prepare_ranged
+  _locationKey: location
+  _jumpInKey: jump_in
+  _jumpOutKey: jump_out
 --- !u!1 &9020961444287331444
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +154,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9020961444287331337}
   - component: {fileID: 9020961444287331338}
-  - component: {fileID: 9020961444287331342}
   - component: {fileID: 9020961444287331343}
   - component: {fileID: 9020961444287331336}
   m_Layer: 0
@@ -100,23 +191,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4259f8e6a58589543ba4271612024112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitAnimator: {fileID: 9020961444287331342}
+  _unitAnimator: {fileID: 3332262692591963574}
   _unitMovement: {fileID: 9020961444287331343}
   _unitSkin: {fileID: 9020961444287331336}
---- !u!114 &9020961444287331342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9020961444287331444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e78e968db5e1baa4e939c966ac4a8b7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 9020961443565671074}
-  _movingSpeedParameterName: MovingSpeed
 --- !u!114 &9020961444287331343
 MonoBehaviour:
   m_ObjectHideFlags: 0

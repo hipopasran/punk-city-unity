@@ -10,4 +10,11 @@ public class Unit : MonoBehaviour
     public UnitMovement UnitMovement => _unitMovement;
     public UnitSkin UnitSkin => _unitSkin;
 
+    private void Awake()
+    {
+        _unitAnimator.InitializeOn(this);
+        _unitMovement.InitializeOn(this);
+        _unitSkin.InitializeOn(this);
+    }
+
 }

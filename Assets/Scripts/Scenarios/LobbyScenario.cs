@@ -90,6 +90,10 @@ public class LobbyScenario : BaseScenario
     }
     private void UpdateVisualLobbyParticipants()
     {
+        if(SharedWebData.Instance.lastLobbyParticipants.participants == null)
+        {
+            return;
+        }
         List<Profile> participantsProfiles = new List<Profile>(SharedWebData.Instance.lastLobbyParticipants.participants);
         LobbyUnitsSpawner spawner = LevelContainer.Instance.LobbyUnitsSpawner;
         int unitsToSpawn = Mathf.Min(spawner.OtherSlotsCount, participantsProfiles.Count);

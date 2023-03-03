@@ -5,15 +5,17 @@ using UnityEngine.UI;
 
 public class BetParametersBlock : MonoBehaviour
 {
-    [Header("Predefinde bets")]
+    [Header("Predefined bets")]
     [SerializeField] private string _predefinedBetTextPrefix;
     [SerializeField] private string _predefinedBetTextPostfix;
     [SerializeField] private GameObject _predefinedBetPrefab;
     [SerializeField] private Transform _predefinedBetsParent;
     [Header("Custom bet")]
-    [SerializeField] private 
-
+    [SerializeField] private Slider _customBetSlider;
+    [SerializeField] private TMP_Text _customBetText;
     private List<Button> _predefindeBetButtons = new List<Button>();
+
+    private float _selectedBet = -1f;
 
     public BetParametersBlock AddPredefinedBet(float bet)
     {
@@ -23,7 +25,7 @@ public class BetParametersBlock : MonoBehaviour
         button.GetComponentInChildren<TMP_Text>().text = _predefinedBetTextPrefix + bet + _predefinedBetTextPostfix;
         return this;
     }
-    public BetParametersBlock ClearPredefindewButtons()
+    public BetParametersBlock ClearPredefinedBetsButtons()
     {
         foreach (var item in _predefindeBetButtons)
         {
@@ -34,12 +36,12 @@ public class BetParametersBlock : MonoBehaviour
     }
     public BetParametersBlock SetMinCustomBet(float minCustomBet)
     {
-
+        _customBetSlider.minValue = minCustomBet;
         return this;
     }
     public BetParametersBlock SetMaxCustomBet(float maxCustomBet)
     {
-
+        _customBetSlider.maxValue = maxCustomBet;
         return this;
     }
 
@@ -47,6 +49,10 @@ public class BetParametersBlock : MonoBehaviour
 
     private void PredefinedBetSelectedHandler(float bet)
     {
-
+        _selectedBet = bet;
+    }
+    private void CustomBetSliderValueChanged(float value)
+    {
+        _selectedBet = value;
     }
 }

@@ -36,6 +36,7 @@ public class UnitSkin : MonoBehaviour, IUnitComponent
         skinTransform.localRotation = Quaternion.identity;
         skinTransform.localPosition = Vector3.zero;
         _items = new UnitItem[_currentSkin.ItemsSlots.Length];
+        _unit.UnitAnimator.FullReset();
     }
 
     public void AttachItem(string name, int itemSlot)
