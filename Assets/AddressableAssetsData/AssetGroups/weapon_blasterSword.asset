@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: weapon_blasterSword
+  m_EditorClassIdentifier: 
+  m_GroupName: weapon_blasterSword
+  m_Data:
+    m_SerializedData: []
+  m_GUID: dd613749142e7f14f92245dfef008115
+  m_SerializeEntries:
+  - m_GUID: c59f7579f27dc0a4e85f5bc528c98d83
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_blasterSword/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5c2e7c5f601f56449a024c7f78305f49
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_blasterSword/Grey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: aa93516cd99b3b74c8451ff550225e4f
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_blasterSword/Orange.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 96fc9d57f11fefb4e8b4d7e6879e053f
+    m_Address: weapon_blasterSword_model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2f8087453d4f31746b04e97f5be83a8a
+    m_Address: weapon_blasterSword_prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a88bdd9bb19b6a45b54b0755751643a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1ec21ef68d74a574eb2b3a6741f1352f, type: 2}
+    - {fileID: 11400000, guid: 4b3037dcd79fcfe4d871a773fcff56e5, type: 2}

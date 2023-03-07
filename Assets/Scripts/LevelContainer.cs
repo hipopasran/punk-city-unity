@@ -6,6 +6,7 @@ public class LevelContainer : MonoBehaviour
     [SerializeField] private BaseScenario _mainScenario;
     [SerializeField] private LobbyUnitsSpawner _lobbyUnitsSpawner;
     [SerializeField] private Transform _cameraPoint;
+    
 
     public static LevelContainer Instance { get; private set; }
     public LevelController LevelController => _levelController;

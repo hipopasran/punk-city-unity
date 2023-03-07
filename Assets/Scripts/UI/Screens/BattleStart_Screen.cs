@@ -16,5 +16,14 @@ public class BattleStart_Screen : UIController
         _txtTimer.text = "До начала " + seconds;
         return this;
     }
+    public BattleStart_Screen SetEnemy(Profile profile)
+    {
 
+        return this;
+    }
+    public BattleStart_Screen SetPlayer(Profile profile)
+    {
+
+        return this;
+    }
 }

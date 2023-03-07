@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: weapon_es9Plasma
+  m_EditorClassIdentifier: 
+  m_GroupName: weapon_es9Plasma
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 42a72ea15e00ab54eb190f33c6583b32
+  m_SerializeEntries:
+  - m_GUID: 1f291cd086435094cb56f51da8613ce0
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_es9Plasma/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 96f72cb53957e9b41ad6aa2cd5fd515c
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_es9Plasma/Yellow.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a3e4b4b4fc6bd30488c91d9ae3927875
+    m_Address: weapon_es9Plasma_prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1e6caf0e7d77f1c40a9bdf86b705ff73
+    m_Address: weapon_es9Plasma_model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c9df0223cd7e81f4db9524967eeb152e
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_es9Plasma/lambert1.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2026e0fa0bbe1524dab5530199ec37bd
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_es9Plasma/Grey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 769db02e510e3a743be61ad7b67d2a60
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_es9Plasma/Blue.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a88bdd9bb19b6a45b54b0755751643a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8d016adca52e5274f870ff6038ce4cd6, type: 2}
+    - {fileID: 11400000, guid: c6f7c8d0e5fd5d44796303d8cd1ab407, type: 2}

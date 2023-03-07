@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: weapon_laserSword
+  m_EditorClassIdentifier: 
+  m_GroupName: weapon_laserSword
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 489db51362b38594faabff1c82fc3c0e
+  m_SerializeEntries:
+  - m_GUID: 98a1aa22aff10e2408d2fa0106105e2f
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_laserSword/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cb0a989e12d16d8488bc15230bf15718
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_laserSword/Grey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 42a197519cf37be46bd78624f9929074
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_laserSword/Red.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8c6ed3a37bfcf544685b48cb41dcfbee
+    m_Address: weapon_laserSword_model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f94c43184e78f8b49bccf20499424782
+    m_Address: weapon_laserSword_prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a88bdd9bb19b6a45b54b0755751643a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f24abe70df4d95740967358a78ff1d67, type: 2}
+    - {fileID: 11400000, guid: fd8aa59568d1245459c1fdc3f4d2a610, type: 2}

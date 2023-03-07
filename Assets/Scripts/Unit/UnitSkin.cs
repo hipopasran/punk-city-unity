@@ -39,6 +39,36 @@ public class UnitSkin : MonoBehaviour, IUnitComponent
         _unit.UnitAnimator.FullReset();
     }
 
+    public void RemoveItem(int slot)
+    {
+        if (_items[slot] != null)
+        {
+            Addressables.ReleaseInstance(_items[slot].gameObject);
+        }
+    }
+    public void ClearItems()
+    {
+        foreach (var item in _items)
+        {
+            if(item != null)
+            {
+                Addressables.ReleaseInstance(item.gameObject);
+            }
+        }
+    }
+    public void AttachItem(UnitItem item, int itemSlot)
+    {
+        if (_items[itemSlot] != null)
+        {
+            Addressables.ReleaseInstance(_items[itemSlot].gameObject);
+        }
+        _items[itemSlot] = item;
+        Transform itemTransform = _items[itemSlot].transform;
+        itemTransform.SetParent(_currentSkin.ItemsSlots[itemSlot]);
+        itemTransform.localScale = Vector3.one;
+        itemTransform.localRotation = Quaternion.identity;
+        itemTransform.localPosition = Vector3.zero;
+    }
     public void AttachItem(string name, int itemSlot)
     {
         AsyncOperationHandle<GameObject> asyncOperation = Addressables.LoadAssetAsync<GameObject>(name);

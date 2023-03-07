@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: weapon_electricSword
+  m_EditorClassIdentifier: 
+  m_GroupName: weapon_electricSword
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 36f7d140e48c27d40951303c08417204
+  m_SerializeEntries:
+  - m_GUID: 796b006f3401c9549a01a78d7607673a
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_electricSword/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: baf4f8c53b644154b9c254d8117a6913
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_electricSword/Blue.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c207ce996b775cb46a658d5210bde621
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_electricSword/Purple.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bb85b379f37e5b243badd8abdeb39d5c
+    m_Address: weapon_electricSword_model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 42e62ff7f3bb7dc4b81e2bc7d9f48ffc
+    m_Address: weapon_electricSword_prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a88bdd9bb19b6a45b54b0755751643a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: fbcfe23872c18e340947c01898bbeddf, type: 2}
+    - {fileID: 11400000, guid: 8eeb69b1e4197254b888e84ea5b36f77, type: 2}

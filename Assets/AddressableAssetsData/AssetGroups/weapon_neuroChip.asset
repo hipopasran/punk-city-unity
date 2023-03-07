@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: weapon_neuroChip
+  m_EditorClassIdentifier: 
+  m_GroupName: weapon_neuroChip
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 01ce24849fa7df144856c73284cb8fdd
+  m_SerializeEntries:
+  - m_GUID: 9656b1739ba11d34d8e8b80c7c18c84e
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_neuroChip/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 84861e914761028438ec1072ea49d346
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_neuroChip/Blue.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3158b730e5898cd459325477423fb069
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_neuroChip/Grey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c07c435857cb4094ab3862b4a689ddf5
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_neuroChip/Purple.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e353a32f6d79c4143b97fba2e542fd58
+    m_Address: weapon_neuroChip_model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a0de281ef5f50e840a947022b28c0c2e
+    m_Address: weapon_neuroChip_prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a88bdd9bb19b6a45b54b0755751643a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 2461bb86671f08c4f825087c2fb49eea, type: 2}
+    - {fileID: 11400000, guid: cf3ae7d097f8eb548a6abcdd639aa858, type: 2}

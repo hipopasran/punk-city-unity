@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: skin_wolf
+  m_EditorClassIdentifier: 
+  m_GroupName: skin_wolf
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 6ce39ebf7baa97842858bc0549cdcb91
+  m_SerializeEntries:
+  - m_GUID: 512a06d0ef92a114c8341474ed753b13
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7287145e1cfb92243898131ab098e4a5
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Black1.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e63791683b556ae42acf7e81f8a54936
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Blue_clear.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 94c69a69d925d15498f13d12cd26589b
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Blue_mate.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ca5b33a068afc9440a57f5254f5a6b67
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Broen.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b0dea086ef83ad644baa0b083440986d
+    m_Address: skin_wolf_model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 27024d95eb4032f4ebbcd55b8ae446b9
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Gey_pure.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4f532143e242e20479055866904d4bd3
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Grey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e233823538d072042bd4d58c8f360ecf
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Grey_2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 85a770ed353eeda469f1360f91462dde
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Orange.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d231d2dccba434045b40908f14b6417c
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Orange_2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3d672f064da527f4ba38ea8cf6c9c999
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Purple.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 87f9b22e8104a474ebffb388b96169a4
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Red_2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 636f7a99d3076f141b943cb88e938e77
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Skin2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bc950f0379993a9469043129b2a5907d
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Skin_Dog.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3f37b0857c83b774c91aa51030263fb8
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/Skin_dog_2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cff01b30678a328488bdc07520a47066
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_wolf/White.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 15551adafff84254ab931c35138c410a
+    m_Address: skin_wolf_prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a88bdd9bb19b6a45b54b0755751643a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: fba5bac941903534e9bdc995e5bf4ce0, type: 2}
+    - {fileID: 11400000, guid: b2fae808b9d24d84090f182dbaa6829b, type: 2}

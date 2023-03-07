@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: skin_girl
+  m_EditorClassIdentifier: 
+  m_GroupName: skin_girl
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 7aebaedbcc39f54429f9876c0bcf0dcb
+  m_SerializeEntries:
+  - m_GUID: d48337f6719d86247933b7b31f8f3a14
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6c4915bca12b51448a5fb2cb559bd8cd
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/Black1.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f2ab43ad079f03f4cb3b35fb2c21b862
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/Blue_ckear.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2ab22127168ce8848aee12ed3f16beb7
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/Blue_mate.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b943fe004e8eed246915ac672fa0663b
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/Broen.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4a51ad89196f65747891690ab0fdad83
+    m_Address: skin_girl_model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 91cf17e71e15f7240b3ff1df29df6c56
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/Gey_pure.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 976712874c434e44197a1ccc9a8fb14e
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/Grey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3e86c1aa9e4d2ce47af896583269ba45
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/Grey_2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 01e53569a5e48124b9ce287c3f6976be
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/lambert1.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 784432e5c18ba7b43b01c35a901b4ae7
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/Orange.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: abb8722fe319a7542a5d77bf66da2d7a
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/Orange_2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ac7814a528e55d44f97c6b155334ab53
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/Purple.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2cc04644822e5bc41aa1849d63f1f16a
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/Red.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2d88673eea58d934e9f910ebad5df128
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/red_hsir.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1ca46380a52700347bb5c7e85f686cf4
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/Skin2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a98f51367f9d74d40bf0127460a4c1fe
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_girl/White.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e130244817540d746907a1a62339244f
+    m_Address: skin_girl_prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a88bdd9bb19b6a45b54b0755751643a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6b2e16fa08627f946b26893f77f7faa4, type: 2}
+    - {fileID: 11400000, guid: e209145a7f164a14e9e95fad7f9d528b, type: 2}

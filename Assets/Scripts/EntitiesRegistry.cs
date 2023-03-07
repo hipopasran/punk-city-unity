@@ -21,8 +21,10 @@ public class EntitiesRegistry : MonoBehaviour
         }
     }
     public EntitiesRegistryData Data => _data;
-    public Dictionary<string, CardData> Cards { get; private set; }
-    public Dictionary<string, EffectData> Effects { get; private set; }
+    public CardData[] Cards => _data.cards;
+    public Dictionary<string, CardData> CardsRegistry { get; private set; }
+    public EffectData[] Effects => _data.effects;
+    public Dictionary<string, EffectData> EffectsRegistry { get; private set; }
 
     private void Initialize()
     {
@@ -30,16 +32,16 @@ public class EntitiesRegistry : MonoBehaviour
         _initialized = true;
         _i = this;
         // initialize all dictionarites here
-        Cards = new Dictionary<string, CardData>();
+        CardsRegistry = new Dictionary<string, CardData>();
         foreach (var item in _data.cards)
         {
-            Cards.Add(item.id, item);
+            CardsRegistry.Add(item.id, item);
         }
 
-        Effects = new Dictionary<string, EffectData>();
+        EffectsRegistry = new Dictionary<string, EffectData>();
         foreach (var item in _data.effects)
         {
-            Effects.Add(item.id, item);
+            EffectsRegistry.Add(item.id, item);
         }
     }
     

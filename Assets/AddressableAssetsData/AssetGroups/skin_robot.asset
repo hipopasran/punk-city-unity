@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: skin_robot
+  m_EditorClassIdentifier: 
+  m_GroupName: skin_robot
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e8055cc2679bbf147b0a61aef398c632
+  m_SerializeEntries:
+  - m_GUID: 78b29e2c7cd01394dbcba8c81c7c5009
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5732b4b144510134291170e38b725a4c
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Black1.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eb6b95ad0ee022f4c9eacf4fd5e07bae
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Blue_clear.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 05146d4d2f1ca7041be86c7a42f16eee
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Blue_mate.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 76821babb86f2144c89a096856942f79
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Broen.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 80742db640700ca4c99c39dfeb97de81
+    m_Address: skin_robot_model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d4d706f38da1a68418ba00c32d97883a
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Gey_pure.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 48467996a094446478b2856bfe020a47
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/grey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2fddf6590adde1646a4a87801bf54561
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Grey_2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cc950814ee0b33c48b46bf7e8d3c72a7
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Orange.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 50b2b2ceb47c6c6499c5b7e87c05311c
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Orange_2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cb53f5da076eed648aa8116102db3e8c
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Purple.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8f3803074e4cae646a5419db67181a21
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Red.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 13f0a56d86adf6a449bb988b046cc38a
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Red_2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7e33249c5135ba44e9b54a3572b53b17
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Skin2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 51883fdf06377b24a870b51b4616f7e0
+    m_Address: Assets/Internal Assets/Adressables/Skins/skin_robot/Skin_alien.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ec9aa05519323f147b20160bb1bf4712
+    m_Address: skin_robot_prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a88bdd9bb19b6a45b54b0755751643a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 845f045ff0d21e948936e9af2d302812, type: 2}
+    - {fileID: 11400000, guid: bcd3880e79a760b47a47b72b484cc450, type: 2}

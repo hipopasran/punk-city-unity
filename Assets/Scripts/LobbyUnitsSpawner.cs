@@ -51,6 +51,6 @@ public class LobbyUnitsSpawner : MonoBehaviour
     }
     private void ApplyProfileToUnit(Profile profile, Unit unit)
     {
-        unit.UnitSkin.SetSkin("skin_TestSkin_prefab");
+        unit.UnitSkin.SetSkin("skin_elf_prefab");
     }
 }

@@ -18,5 +18,9 @@ public class Battle_Screen : UIController
 
         return this;
     }
+    public Battle_Screen ClearCards()
+    {
+
+    }
 
 }
