@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 69ec53d3d980aa043ad7b759b77d9e24
+guid: 71f54f5156840c842b0f859c296ed21a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -8,17 +8,27 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Black
-    second: {fileID: 2100000, guid: 69225d619efe01c43bcda4b6ccb18680, type: 2}
+    second: {fileID: 2100000, guid: 7a992c9a2baf2a44aac53289fd5eab9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blue
+    second: {fileID: 2100000, guid: 650314e579d7be44cb52510a07dfc45d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Grey
-    second: {fileID: 2100000, guid: 170ae7fccec237748ae5402dbae60bd0, type: 2}
+    second: {fileID: 2100000, guid: 254af6da9a87b644e81e94b2f3a709a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Purple
+    second: {fileID: 2100000, guid: 50d9b398388bb7d46950e85969fdf8cd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Red
-    second: {fileID: 2100000, guid: c6236a736651d1a4b90655e432aeb73b, type: 2}
+    second: {fileID: 2100000, guid: 538c1cd37a4d05f43a89e215d10ff0f5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -50,7 +60,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 2
+    globalScale: 1.7
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -103,7 +113,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 2
+    globalScale: 0.017
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
