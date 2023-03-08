@@ -1,9 +1,12 @@
 using GLG;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class GameScenario : BaseScenario
 {
+    [SerializeField] private int _environmentsCount = 4;
     [SerializeField] private Unit _unitPrefab;
     [SerializeField] private Transform _playerPoint;
     [SerializeField] private Transform _enemyPoint;
@@ -17,32 +20,39 @@ public class GameScenario : BaseScenario
     private Profile _enemyProfile;
     private Battle_Screen _battleScreen;
     private IEnumerator _scenarioRoutine;
-    private bool _hasHandlers = false;
+    private bool _isInitialized = false;
 
 
     public override bool IsError { get; protected set; }
     public override bool IsRunning { get; protected set; }
     public override string ErrorMessage { get; protected set; }
 
+    private void OnDestroy()
+    {
+        Dispose();
+    }
+
     public override void StartScenario()
     {
         if (IsRunning) return;
         IsRunning = true;
+        Initilize();
         if (_scenarioRoutine != null)
         {
-            Kernel.CoroutinesObject.StopCoroutine(_scenarioRoutine);
+            StopCoroutine(_scenarioRoutine);
         }
         _scenarioRoutine = Scenario();
-        Kernel.CoroutinesObject.StartCoroutine(_scenarioRoutine);
+        StartCoroutine(_scenarioRoutine);
     }
     public override void StopScenario()
     {
-        if(!IsRunning) return;
+        if (!IsRunning) return;
         IsRunning = false;
         if (_scenarioRoutine != null)
         {
-            Kernel.CoroutinesObject.StopCoroutine(_scenarioRoutine);
+            StopCoroutine(_scenarioRoutine);
         }
+        Dispose();
     }
 
 
@@ -50,10 +60,11 @@ public class GameScenario : BaseScenario
     {
         // initialization
         SetPlayer(SharedWebData.Instance.playerProfile);
-        if(SharedWebData.Instance.lastEnemyProfile != null)
+        if (SharedWebData.Instance.lastEnemyProfile != null)
         {
             SetEnemy(SharedWebData.Instance.lastEnemyProfile);
         }
+        yield return StartCoroutine(LoadEnvironment());
         Kernel.UI.Get<LoadingOverlay>().Hide();
         // intro
         yield return StartCoroutine(BattleStart_Subscenario());
@@ -61,14 +72,30 @@ public class GameScenario : BaseScenario
         Kernel.UI.ShowUI<Battle_Screen>();
         yield return StartCoroutine(SetCards());
 
+        while (true)
+        {
+            yield return null;
+        }
 
+
+        IsRunning = false;
+        Dispose();
         yield break;
     }
 
+    private IEnumerator LoadEnvironment()
+    {
+        AsyncOperationHandle<GameObject> asyncOperation = Addressables.LoadAssetAsync<GameObject>("environment_" + Random.Range(1, _environmentsCount + 1) + "_prefab");
+        while (!asyncOperation.IsDone)
+        {
+            yield return null;
+        }
+        Instantiate(asyncOperation.Result, _mapContainer);
+    }
     private IEnumerator SetCards()
     {
         _battleScreen.ClearCards();
-        foreach(var item in EntitiesRegistry.i.Cards)
+        foreach (var item in EntitiesRegistry.i.Cards)
         {
             _battleScreen.AddCard(item);
             yield return new WaitForSeconds(0.2f);
@@ -95,18 +122,19 @@ public class GameScenario : BaseScenario
         yield break;
     }
 
-    private void AddHandlers()
+    private void Initilize()
     {
-        if (_hasHandlers) return;
-        _hasHandlers = true;
+        if (_isInitialized) return;
+        _isInitialized = true;
         _battleScreen = Kernel.UI.Get<Battle_Screen>();
         _playerProfile = SharedWebData.Instance.playerProfile;
         _enemyProfile = SharedWebData.Instance.lastEnemyProfile;
     }
-    private void RemoveHandlers()
+    private void Dispose()
     {
-        if(!_hasHandlers) return;
-        _hasHandlers = false;
+        if (!_isInitialized) return;
+        _isInitialized = false;
+        Addressables.ReleaseInstance(_mapContainer.GetChild(0).gameObject);
     }
 
     private void SetMap(string mapName)
@@ -150,7 +178,7 @@ public class GameScenario : BaseScenario
     private void WeaponSelectedHandler(CardData cardData)
     {
         _player.UnitAttack
-        .OnWeaponEquipped(() => 
+        .OnWeaponEquipped(() =>
         {
             _player.UnitAttack.DoAttack();
         })

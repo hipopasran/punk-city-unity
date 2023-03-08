@@ -31,19 +31,35 @@ public class UnitMovement : MonoBehaviour, IUnitComponent, IManaged
     {
         if(_wantToMove)
         {
-            float velocityChangeProgress = Mathf.InverseLerp(0f, _speedUpDuration, _t);
-            _cashedTransform.forward = _targetDirection;
-            _currentVelocity = _cashedTransform.forward * _maxSpeed * _velocityChangeCurve.Evaluate(velocityChangeProgress) * Time.deltaTime;
+            _t += Time.deltaTime;
+            float velocityChangeProgress = Mathf.InverseLerp(0f, 1f, _t / _speedUpDuration);
+            if (_targetDirection.sqrMagnitude > 0.0001)
+            {
+                _cashedTransform.forward = _targetDirection;
+            }
+            float speed = _maxSpeed * _velocityChangeCurve.Evaluate(velocityChangeProgress);
+            _currentVelocity = _cashedTransform.forward * speed * Time.deltaTime;
             if(_wantToAnimate)
             {
-                //_unit.UnitAnimator
+                _unit.UnitAnimator.SetFloat("MovingSpeed", speed);
             }
+            _cashedTransform.position += _currentVelocity;
+            _wantToMove = false;
+        }
+        else
+        {
+            _t = 0f;
+            _unit.UnitAnimator.SetFloat("MovingSpeed", 0f);
         }
     }
 
     public void Move(Vector3 direction, bool withAnimation = true)
     {
         _targetDirection = direction.normalized;
+        if (_targetDirection.sqrMagnitude > 0.0001)
+        {
+            _cashedTransform.forward = _targetDirection;
+        }
         _wantToMove = true;
         _wantToAnimate = withAnimation;
         _t += Time.deltaTime;

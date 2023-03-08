@@ -1,9 +1,10 @@
 using GLG;
+using SimpleInputNamespace;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LobbyScenario : BaseScenario
+public class LobbyScenario : BaseScenario, IManaged
 {
     private bool _startSearchBattle = false;
     private IEnumerator _updateLobbyParticipantsRoutine;
@@ -11,28 +12,42 @@ public class LobbyScenario : BaseScenario
     private string _selectedCurrency;
     private float _selectedBet;
     private bool _readyToSearchBattle;
+    private bool _isInitilized = false;
+    private Unit _player;
+    private Joystick _joystick;
 
     public override bool IsError { get; protected set; }
     public override bool IsRunning { get; protected set; }
     public override string ErrorMessage { get; protected set; }
 
+    private void Awake()
+    {
+        Kernel.RegisterManaged(this);
+    }
+    private void OnDestroy()
+    {
+        Kernel.UnregisterManaged(this);
+    }
+
     public override void StartScenario()
     {
         if (IsRunning) return;
         IsRunning = true;
+        Initilize();
         Kernel.UI.mainCamera.transform.SetPositionAndRotation(LevelContainer.Instance.CameraPoint.position, LevelContainer.Instance.CameraPoint.rotation);
-        Kernel.CoroutinesObject.StartCoroutine(Scenario());
+        StartCoroutine(Scenario());
     }
 
     public override void StopScenario()
     {
         if (!IsRunning) return;
         IsRunning = false;
-        Kernel.CoroutinesObject.StopCoroutine(Scenario());
+        StopCoroutine(Scenario());
         if (_updateLobbyParticipantsRoutine != null)
         {
-            Kernel.CoroutinesObject.StopCoroutine(_updateLobbyParticipantsRoutine);
+            StopCoroutine(_updateLobbyParticipantsRoutine);
         }
+        Dispose();
     }
 
 
@@ -40,14 +55,16 @@ public class LobbyScenario : BaseScenario
     {
         UpdateVisualPlayerInfo();
         _updateLobbyParticipantsRoutine = UpdateLobbyParticipants_SubScenario();
-        Kernel.CoroutinesObject.StartCoroutine(_updateLobbyParticipantsRoutine);
+        StartCoroutine(_updateLobbyParticipantsRoutine);
         Kernel.UI.ShowUI<LobbyOverlay>();
         while (!_readyToSearchBattle)
         {
             yield return null;
         }
         _readyToSearchBattle = false;
+
         IsRunning = false;
+        Dispose();
         yield break;
     }
 
@@ -87,10 +104,11 @@ public class LobbyScenario : BaseScenario
         .SetLeagueLevel(player.level);
         LobbyUnitsSpawner spawner = LevelContainer.Instance.LobbyUnitsSpawner;
         spawner.SpawnPlayer(player);
+        _player = spawner.Player;
     }
     private void UpdateVisualLobbyParticipants()
     {
-        if(SharedWebData.Instance.lastLobbyParticipants.participants == null)
+        if (SharedWebData.Instance.lastLobbyParticipants.participants == null)
         {
             return;
         }
@@ -115,6 +133,22 @@ public class LobbyScenario : BaseScenario
         StopScenario();
     }
 
+
+    private void Initilize()
+    {
+        if (_isInitilized) return;
+        _isInitilized = true;
+        Kernel.UI.Get<LobbyOverlay>().OnBattleSearchButton += SearchBattleButtonHandler;
+        _joystick = Kernel.UI.ShowUI<JoystickOverlay>().joystick;
+    }
+    private void Dispose()
+    {
+        if (!_isInitilized) return;
+        _isInitilized = false;
+        Kernel.UI.Get<LobbyOverlay>().OnBattleSearchButton -= SearchBattleButtonHandler;
+    }
+
+
     #region HANDLERS
     public void StartButtonHandler()
     {
@@ -130,7 +164,20 @@ public class LobbyScenario : BaseScenario
     }
     public void SearchBattleButtonHandler()
     {
+        Debug.Log("SearchBattleButtonHandler");
         _readyToSearchBattle = true;
+    }
+
+    public void ManagedUpdate()
+    {
+        if (_player)
+        {
+            if (_joystick.IsPressed)
+            {
+                Vector3 dir = new Vector3(_joystick.Value.x, 0f, _joystick.Value.y);
+                _player.UnitMovement.Move(dir);
+            }
+        }
     }
     #endregion
 }

@@ -386,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d511a1fd33b14ab429aba6edc1b50889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _environmentsCount: 4
   _unitPrefab: {fileID: 9020961444287331338, guid: b487bdc401cb5b74bbb427fa9347a7ea,
     type: 3}
   _playerPoint: {fileID: 2043582153}
@@ -423,7 +424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelController: {fileID: 0}
-  _mainScenario: {fileID: 0}
+  _mainScenario: {fileID: 1534019784}
   _lobbyUnitsSpawner: {fileID: 0}
   _cameraPoint: {fileID: 574967269}
 --- !u!4 &1900118744

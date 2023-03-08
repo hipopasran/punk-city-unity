@@ -67,6 +67,7 @@ public class LevelsManager : MonoBehaviour
 
     IEnumerator LoadScene(string name, bool autoShowLobby = true)
     {
+        Debug.Log($"[LevelsManager] LoadScene:  current:{PrevScene}  load:{name}");
         IsLoading = true;
         Kernel.UI.mainCamera.transform.SetParent(Kernel.UI.transform);
         Kernel.UI.HideAll();
