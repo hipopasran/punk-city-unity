@@ -92,7 +92,7 @@ public class GameScenario : BaseScenario
     }
     private IEnumerator Battle_Subscenario()
     {
-
+        yield break;
     }
 
     private void AddHandlers()

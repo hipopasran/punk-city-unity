@@ -20,7 +20,7 @@ public class Battle_Screen : UIController
     }
     public Battle_Screen ClearCards()
     {
-
+        return this;
     }
 
 }
