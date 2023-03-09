@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class UICard : MonoBehaviour
 {
-    public event System.Action<UICard> onClicked;
+    public event System.Action<string> onClicked;
 
     [SerializeField] private Image _icon;
     [SerializeField] private Button _button;
@@ -36,11 +36,19 @@ public class UICard : MonoBehaviour
     public UICard ApplyCardData(CardData cardData)
     {
         _relatedCardData = cardData;
+        QuantityText = "";
+        MiddleText = "";
+        BottomText = cardData.displayName;
         return this;
     }
 
     private void ClickHandler()
     {
-        onClicked?.Invoke(this);
+        onClicked?.Invoke(RelatedCardData.id);
+    }
+
+    private void Dispose()
+    {
+        onClicked = null;
     }
 }

@@ -11,13 +11,14 @@ public class LobbyScenario : BaseScenario, IManaged
 
     private string _selectedCurrency;
     private float _selectedBet;
-    private bool _readyToSearchBattle;
+    private bool _readyToSearchBattle = false;
     private bool _isInitilized = false;
     private Unit _player;
     private Joystick _joystick;
+    private bool _isRunning = false;
 
     public override bool IsError { get; protected set; }
-    public override bool IsRunning { get; protected set; }
+    public override bool IsRunning { get => _isRunning; protected set { _isRunning = value; Debug.Log("IsRunning: " + _isRunning); } }
     public override string ErrorMessage { get; protected set; }
 
     private void Awake()
@@ -56,6 +57,7 @@ public class LobbyScenario : BaseScenario, IManaged
         UpdateVisualPlayerInfo();
         _updateLobbyParticipantsRoutine = UpdateLobbyParticipants_SubScenario();
         StartCoroutine(_updateLobbyParticipantsRoutine);
+        yield return StartCoroutine(UpdateAvailableBets_SubScenario());
         Kernel.UI.ShowUI<LobbyOverlay>();
         while (!_readyToSearchBattle)
         {
@@ -68,7 +70,7 @@ public class LobbyScenario : BaseScenario, IManaged
         yield break;
     }
 
-    private IEnumerator UpdateLobbyParticipants_SubScenario()
+    private IEnumerator UpdateLobbyParticipants_SubScenario()// TOTEST
     {
         Web.Request request = Web.SendRequest("/api/lobby_participants", Web.RequestKind.Get);
         while (!request.IsComplete)
@@ -85,12 +87,29 @@ public class LobbyScenario : BaseScenario, IManaged
             UpdateVisualLobbyParticipants();
         }
     }
-    private IEnumerator EnemySearching_SubScenario()
+    private IEnumerator UpdateAvailableBets_SubScenario()// TODO
     {
-
+        // get bets here;
+        BetsData[] availableBets = new BetsData[2];
+        availableBets[0] =
+            new BetsData()
+            {
+                currency = "ton",
+                minCustomBet = 1f,
+                maxCustomBet = 100f,
+                availableBets = new float[4] { 1, 5, 10, 100 }
+            };
+        availableBets[1] =
+            new BetsData()
+            {
+                currency = "praxis",
+                minCustomBet = 1f,
+                maxCustomBet = 100f,
+                availableBets = new float[4] { 1, 5, 10, 100 }
+            };
+        Kernel.UI.Get<BetSelection_Screen>().ApplyData(availableBets);
         yield break;
     }
-
 
     private void UpdateVisualPlayerInfo()
     {
@@ -126,11 +145,6 @@ public class LobbyScenario : BaseScenario, IManaged
     private void OnError(string error)
     {
         Debug.Log("[LobbyScenario] ERROR: " + error);
-        IsError = true;
-        IsRunning = false;
-        ErrorMessage = error;
-        _readyToSearchBattle = false;
-        StopScenario();
     }
 
 
@@ -164,8 +178,17 @@ public class LobbyScenario : BaseScenario, IManaged
     }
     public void SearchBattleButtonHandler()
     {
-        Debug.Log("SearchBattleButtonHandler");
-        _readyToSearchBattle = true;
+        Kernel.UI.ShowUI<BetSelection_Screen>()
+            .OnBetSelected((string currency, float value) =>
+            {
+                _selectedCurrency = currency;
+                _selectedBet = value;
+                _readyToSearchBattle = true;
+            })
+            .OnClosed(() =>
+            {
+                _readyToSearchBattle = false;
+            });
     }
 
     public void ManagedUpdate()

@@ -26,7 +26,7 @@ public class UnitAttack : MonoBehaviour, IUnitComponent
         _unit.UnitAnimator.PlayAttack(_currentWeapon.AttackPreparingKind, _currentWeapon.AttackKind);
         return this;
     }
-    public UnitAttack EquipWeapon(string key)
+    public UnitAttack EquipWeapon(string key, int level)
     {
         AsyncOperationHandle<GameObject> asyncOperation = Addressables.LoadAssetAsync<GameObject>(name);
         asyncOperation.Completed += WeaponLoadedHandler;

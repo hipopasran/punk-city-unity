@@ -1,5 +1,4 @@
 using GLG.UI;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,42 +15,54 @@ public class BetSelection_Screen : UIController
     private event System.Action _onClosed;
     private event System.Action<string , float> _onBetSelected;
 
-    [SerializeField] private Button[] _availableBetButtons;
-    [SerializeField] private TMP_Text[] _availableBetTexts;
-    [SerializeField] private Slider _sliderCustomBet;
-    [SerializeField] private Button _btnSetCustomBet;
-    [SerializeField] private TMP_Text _txtCustomBet;
+    [SerializeField] private Button _tonBlockSelector;
+    [SerializeField] private Button _praxisBetSelector;
+    [SerializeField] private BetParametersBlock[] _betsBlocks;
     [SerializeField] private Button _btnClose;
 
-    private BetsData _betsData;
     private string _selecedCurrency;
     private float _selectedBet;
 
     private void Start()
     {
-        for (int i = 0; i < _availableBetButtons.Length; i++)
-        {
-            _availableBetTexts[i].text = '$' + _betsData.availableBets[i].ToString();
-            _availableBetButtons[i].onClick.AddListener(() => BetSelectedButtonHandler(_betsData.availableBets[i]));
-        }
-        _btnSetCustomBet.onClick.AddListener(() => CustomBetSelectedButtonHandler(Mathf.Lerp(_betsData.minCustomBet, _betsData.maxCustomBet, _sliderCustomBet.value)));
-        _sliderCustomBet.onValueChanged.AddListener(CustomBetSliderValueChangedHandler);
         _btnClose.onClick.AddListener(CloseButtonHandler);
+        _tonBlockSelector.onClick.AddListener(TonSelectedHandler);
+        _praxisBetSelector.onClick.AddListener(PraxisSelectedHandler);
+        foreach (var item in _betsBlocks)
+        {
+            item.onBetSelected += ApplyBetHandler;
+        }
     }
     private void OnDestroy()
     {
-        for (int i = 0; i < _availableBetButtons.Length; i++)
-        {
-            _availableBetButtons[i].onClick.RemoveAllListeners();
-        }
-        _btnSetCustomBet.onClick.RemoveAllListeners();
-        _sliderCustomBet.onValueChanged.RemoveAllListeners();
         _btnClose.onClick.RemoveAllListeners();
+        _tonBlockSelector.onClick.RemoveListener(TonSelectedHandler);
+        _praxisBetSelector.onClick.RemoveListener(PraxisSelectedHandler);
+        foreach (var item in _betsBlocks)
+        {
+            item.onBetSelected -= ApplyBetHandler;
+        }
     }
 
-    public BetSelection_Screen ApplyData(BetsData betsData)
+    protected override void OnStartShow()
     {
+        base.OnStartShow();
+        _betsBlocks[0].gameObject.SetActive(true);
+        _betsBlocks[1].gameObject.SetActive(false);
+    }
 
+    public BetSelection_Screen ApplyData(BetsData[] betsData)
+    {
+        foreach (var betData in betsData)
+        {
+            foreach (var betBlock in _betsBlocks)
+            {
+                if(betBlock.Currency == betData.currency)
+                {
+                    betBlock.ApplyBetsData(betData);
+                }
+            }
+        }
         return this;
     }
     public BetSelection_Screen OnBetSelected(System.Action<string, float> callback)
@@ -65,24 +76,10 @@ public class BetSelection_Screen : UIController
         return this;
     }
 
-    private void BetCyrrencyChanged(string currency)
+    private void ApplyBetHandler(string currency, float value)
     {
         _selecedCurrency = currency;
-    }
-    private void BetSelectedButtonHandler(float bet)
-    {
-        _selectedBet = bet;
-    }
-    private void CustomBetSelectedButtonHandler(float bet)
-    {
-        _selectedBet = bet;
-    }
-    private void CustomBetSliderValueChangedHandler(float value)
-    {
-        _txtCustomBet.text = "—¬Œﬂ —“¿¬ ¿: $" + Mathf.Lerp(_betsData.minCustomBet, _betsData.maxCustomBet, _sliderCustomBet.value).ToString();
-    }
-    private void ApplyBetHandler()
-    {
+        _selectedBet = value;
         _onBetSelected?.Invoke(_selecedCurrency, _selectedBet);
         _onBetSelected = null;
     }
@@ -91,5 +88,34 @@ public class BetSelection_Screen : UIController
         Hide();
         _onClosed?.Invoke();
         _onClosed = null;
+    }
+
+    private void TonSelectedHandler()
+    {
+        foreach (var item in _betsBlocks)
+        {
+            if(item.Currency == "ton")
+            {
+                item.gameObject.SetActive(true);
+            }
+            else
+            {
+                item.gameObject.SetActive(false);
+            }
+        }
+    }
+    private void PraxisSelectedHandler()
+    {
+        foreach (var item in _betsBlocks)
+        {
+            if (item.Currency == "praxis")
+            {
+                item.gameObject.SetActive(true);
+            }
+            else
+            {
+                item.gameObject.SetActive(false);
+            }
+        }
     }
 }

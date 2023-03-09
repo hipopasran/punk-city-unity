@@ -28,6 +28,7 @@ public class InitializationScenario : MonoBehaviour, IScenario
         Kernel.UI.ShowUI<LoadingOverlay>();
         string token = Web.GetToken();
         Web.Initialize(_url, token);
+        /*
         // get player data
         Web.Request profileRequest = Web.SendRequest("/api/profile", Web.RequestKind.Get);
         while (!profileRequest.IsComplete)
@@ -59,6 +60,19 @@ public class InitializationScenario : MonoBehaviour, IScenario
                 SharedWebData.Instance.playerProfile.avatar = avatarRequest.ResultTexture.ToSprite();
             }
         }
+        */
+        SharedWebData.Instance.playerProfile = new Profile()
+        {
+            avatar = null,
+            experience = 50,
+            id = 0,
+            identification = "@test_player_0",
+            level = 1,
+            new_level_threshold = 300,
+            praxis_balance = 100,
+            profile_url = null,
+            ton_balance = 100
+        };
         IsRunning = false;
         yield break;
     }

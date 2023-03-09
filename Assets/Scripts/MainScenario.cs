@@ -58,7 +58,9 @@ public class MainScenario : MonoBehaviour
 
                 case GameState.EnemySearching:
                     Debug.Log("=====     EnemySearching SCENARIO     ===== ");
-                    yield return StartCoroutine(EnemySearchingScenario());
+                    EnemySearchingScenario enemySearchingScenario = LevelContainer.Instance.EnemySearchingScenario;
+                    enemySearchingScenario.StartScenario();
+                    while (enemySearchingScenario.IsRunning) yield return null;
                     ChangeState(GameState.Briefing);
                     break;
 
@@ -67,7 +69,6 @@ public class MainScenario : MonoBehaviour
                     Debug.Log("=====     Briefing SCENARIO     ===== ");
                     Kernel.LevelsManager.UnloadCurrentAndLoad("Game");
                     while (Kernel.LevelsManager.IsLoading) yield return null;
-                    yield return StartCoroutine(BriefingScenario());
                     ChangeState(GameState.Game);
                     break;
 

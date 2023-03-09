@@ -70,7 +70,7 @@ public class GameScenario : BaseScenario
         yield return StartCoroutine(BattleStart_Subscenario());
         // battle start
         Kernel.UI.ShowUI<Battle_Screen>();
-        yield return StartCoroutine(SetCards());
+        yield return StartCoroutine(LoadCards());
 
         while (true)
         {
@@ -92,12 +92,12 @@ public class GameScenario : BaseScenario
         }
         Instantiate(asyncOperation.Result, _mapContainer);
     }
-    private IEnumerator SetCards()
+    private IEnumerator LoadCards()
     {
         _battleScreen.ClearCards();
         foreach (var item in EntitiesRegistry.i.Cards)
         {
-            _battleScreen.AddCard(item);
+            _battleScreen.AddCard(item).onClicked += PerformPlayerAttack;
             yield return new WaitForSeconds(0.2f);
         }
         yield break;
@@ -137,13 +137,9 @@ public class GameScenario : BaseScenario
         Addressables.ReleaseInstance(_mapContainer.GetChild(0).gameObject);
     }
 
-    private void SetMap(string mapName)
-    {
-
-    }
-
     private void SetPlayer(Profile profile)
     {
+        Kernel.UI.Get<Battle_Screen>().SetPlayerData(profile);
         if (_player == null)
         {
             _player = Instantiate(_unitPrefab);
@@ -154,6 +150,7 @@ public class GameScenario : BaseScenario
     }
     private void SetEnemy(Profile profile)
     {
+        Kernel.UI.Get<Battle_Screen>().SetEnemyData(profile);
         if (_enemy == null)
         {
             _enemy = Instantiate(_unitPrefab);
@@ -173,11 +170,39 @@ public class GameScenario : BaseScenario
     {
         unit.UnitSkin.SetSkin("skin_elf_prefab");
     }
-
-
-    private void WeaponSelectedHandler(CardData cardData)
+    private void PerformPlayerAttack(string key)
     {
-        _player.UnitAttack
+        PerformAttack(_player, key);
+    }
+    private void PerformEnemyAttack(string key)
+    {
+        PerformAttack(_enemy, key);
+    }
+    private void PerformAttack(Unit unit, string key)
+    {
+        string weapon;
+        switch (key)
+        {
+            case "katana":
+                weapon = "katana";
+                break;
+            case "hack":
+                weapon = "";
+                break;
+            case "grenade":
+                weapon = "";
+                break;
+            case "pistol":
+                weapon = "";
+                break;
+            case "annihilation":
+                weapon = "";
+                break;
+            default:
+                weapon = "";
+                break;
+        }
+        unit.UnitAttack
         .OnWeaponEquipped(() =>
         {
             _player.UnitAttack.DoAttack();
@@ -186,6 +211,6 @@ public class GameScenario : BaseScenario
         {
 
         })
-        .EquipWeapon(cardData.id);
+        .EquipWeapon(weapon, 0);
     }
 }

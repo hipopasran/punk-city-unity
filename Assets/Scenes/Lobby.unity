@@ -357,6 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1072451269}
   - component: {fileID: 1072451270}
+  - component: {fileID: 1072451271}
   m_Layer: 0
   m_Name: Scenario
   m_TagString: Untagged
@@ -389,6 +390,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c272f2ec0199194bae725c584e3c6ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1072451271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072451268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179652f95c97d5344a164656188b37d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1127329670
@@ -825,6 +838,7 @@ MonoBehaviour:
   _mainScenario: {fileID: 1072451270}
   _lobbyUnitsSpawner: {fileID: 936147762}
   _cameraPoint: {fileID: 1163394166}
+  _enemySearchingScenario: {fileID: 1072451271}
 --- !u!4 &2073374799
 Transform:
   m_ObjectHideFlags: 0
