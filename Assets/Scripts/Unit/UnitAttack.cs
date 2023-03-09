@@ -28,8 +28,16 @@ public class UnitAttack : MonoBehaviour, IUnitComponent
     }
     public UnitAttack EquipWeapon(string key, int level)
     {
-        AsyncOperationHandle<GameObject> asyncOperation = Addressables.LoadAssetAsync<GameObject>(name);
+        AsyncOperationHandle<GameObject> asyncOperation = Addressables.LoadAssetAsync<GameObject>($"weapon_{key}_{level}_prefab");
         asyncOperation.Completed += WeaponLoadedHandler;
+        return this;
+    }
+    public UnitAttack ClearWeapon()
+    {
+        if(_currentWeapon != null )
+        {
+            Addressables.ReleaseInstance(_currentWeapon.gameObject);
+        }
         return this;
     }
     public UnitAttack OnWeaponEquipped(System.Action callback)

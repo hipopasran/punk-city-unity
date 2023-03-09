@@ -62,3 +62,9 @@ MonoBehaviour:
   - id: 
     icon: {fileID: 0}
     description: 
+  skins:
+  - id: elf
+  - id: girl
+  - id: human
+  - id: robot
+  - id: wolf

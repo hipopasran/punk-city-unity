@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: weapon_grenade_1
+  m_EditorClassIdentifier: 
+  m_GroupName: weapon_grenade_1
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 180f945c9f1272745a61dbe769f4bc4c
+  m_SerializeEntries:
+  - m_GUID: 3496368a291dc894390cc85d55972354
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_grenade_1/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c5cac6a62467058418b8c0017b2628c0
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_grenade_1/Blue.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 96cf1ea18c06b3d49bd0b1520bf44259
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_grenade_1/Grey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b733d47af2d5a3040bc7a7fbf90c3c6d
+    m_Address: weapon_grenade_1_model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f442407c50d81bb41a82113af46e6f32
+    m_Address: weapon_grenade_1_prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a88bdd9bb19b6a45b54b0755751643a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ffc53d34891f7944f9ff39173fef5078, type: 2}
+    - {fileID: 11400000, guid: b0ad6e83a502a194e84b32db4e75a096, type: 2}

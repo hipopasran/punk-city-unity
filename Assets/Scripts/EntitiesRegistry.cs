@@ -25,6 +25,7 @@ public class EntitiesRegistry : MonoBehaviour
     public Dictionary<string, CardData> CardsRegistry { get; private set; }
     public EffectData[] Effects => _data.effects;
     public Dictionary<string, EffectData> EffectsRegistry { get; private set; }
+    public SkinData[] Skins => _data.skins;
 
     private void Initialize()
     {

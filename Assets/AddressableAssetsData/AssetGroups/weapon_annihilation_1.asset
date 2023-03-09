@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: weapon_annihilation_1
+  m_EditorClassIdentifier: 
+  m_GroupName: weapon_annihilation_1
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 872733920a05c86479798fbf93a65b71
+  m_SerializeEntries:
+  - m_GUID: 264bdf9cc327e584b942029fe8fe3535
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_annihilation_1/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8fcbe0838e9054a4daaa924d9e803c2f
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_annihilation_1/Blue.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1018ce2f535ee2e4da108499901e652a
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_annihilation_1/Grey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fc53d10d042069f4cbe3badffda5a509
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_annihilation_1/Red.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 54c896eda181f184c8ab515515bada6d
+    m_Address: weapon_annihilation_1_model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 28730d72717e0e1439c9deddbb756b22
+    m_Address: weapon_annihilation_1_prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 13b59ff5148beeb459e10d66e6882d26
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_annihilation_1/Yellow.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a88bdd9bb19b6a45b54b0755751643a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: aabaeb2b302461c4a806c9bd3c5bcc36, type: 2}
+    - {fileID: 11400000, guid: f6c40ebd2cbe82e479b05db6a39c8de5, type: 2}

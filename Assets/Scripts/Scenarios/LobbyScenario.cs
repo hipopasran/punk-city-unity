@@ -160,6 +160,7 @@ public class LobbyScenario : BaseScenario, IManaged
         if (!_isInitilized) return;
         _isInitilized = false;
         Kernel.UI.Get<LobbyOverlay>().OnBattleSearchButton -= SearchBattleButtonHandler;
+        LevelContainer.Instance.LobbyUnitsSpawner.Dispose();
     }
 
 

@@ -187,16 +187,16 @@ public class GameScenario : BaseScenario
                 weapon = "katana";
                 break;
             case "hack":
-                weapon = "";
+                weapon = "hack";
                 break;
             case "grenade":
-                weapon = "";
+                weapon = "grenade";
                 break;
             case "pistol":
-                weapon = "";
+                weapon = "pistol";
                 break;
             case "annihilation":
-                weapon = "";
+                weapon = "annihilation";
                 break;
             default:
                 weapon = "";
@@ -205,11 +205,11 @@ public class GameScenario : BaseScenario
         unit.UnitAttack
         .OnWeaponEquipped(() =>
         {
-            _player.UnitAttack.DoAttack();
+            unit.UnitAttack.DoAttack();
         })
         .OnAttackCompleted(() =>
         {
-
+            unit.UnitAttack.ClearWeapon();
         })
         .EquipWeapon(weapon, 0);
     }

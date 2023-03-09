@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: weapon_pistol_1
+  m_EditorClassIdentifier: 
+  m_GroupName: weapon_pistol_1
+  m_Data:
+    m_SerializedData: []
+  m_GUID: c8b134f1a36ba694db14a8a9b48d2989
+  m_SerializeEntries:
+  - m_GUID: a89b84929fa6c23419a832be050a4ec2
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_pistol_1/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f8056480a9cf5c74a95481c39f5f939d
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_pistol_1/Blue.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 46dbfbad74cb2f045a1255c6766f45ec
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_pistol_1/Grey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ce18a7e1c3d6e2f43b6ed62c9dd6ad6d
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_pistol_1/Purple.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6af40cd5f1dd3c548817ed774af6e85a
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_pistol_1/Red.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a0182d58bde999c4dad1dc8e6c515faf
+    m_Address: weapon_pistol_1_model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7c99c0a958ee31647a4e005d19a0cf24
+    m_Address: weapon_pistol_1_prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a88bdd9bb19b6a45b54b0755751643a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7e517274bed0888468b1fa8e1aab2db9, type: 2}
+    - {fileID: 11400000, guid: bfc980e5033a6ed4f878911bf898cf5f, type: 2}

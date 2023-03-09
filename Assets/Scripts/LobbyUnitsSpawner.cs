@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class LobbyUnitsSpawner : MonoBehaviour
 {
@@ -15,28 +16,29 @@ public class LobbyUnitsSpawner : MonoBehaviour
 
     private void Awake()
     {
-        _otherUnits =  new Unit[_otherUnitsSlots.Length];
+        _otherUnits = new Unit[_otherUnitsSlots.Length];
     }
 
-    public void SpawnPlayer(Profile profile)
+    public void SpawnPlayer(Profile profile, bool randomSkin = true)
     {
-        if(_player == null)
+        if (_player == null)
         {
             _player = Instantiate(_unitPrefab);
         }
         ApplyUnitToSlot(_player, _playerSlot);
-        ApplyProfileToUnit(profile, _player);
+        ApplyProfileToUnit(profile, _player, randomSkin);
     }
-    public void SpawnOtherUnit(Profile profile)
+    public void SpawnOtherUnit(Profile profile, bool randomSkin = true)
     {
+        
         if (_otherUnits[_slotsCounter] == null)
         {
             _otherUnits[_slotsCounter] = Instantiate(_unitPrefab);
         }
         ApplyUnitToSlot(_otherUnits[_slotsCounter], _otherUnitsSlots[_slotsCounter]);
-        ApplyProfileToUnit(profile, _otherUnits[_slotsCounter]);
+        ApplyProfileToUnit(profile, _otherUnits[_slotsCounter], randomSkin);
         _slotsCounter++;
-        if(_slotsCounter == _otherUnitsSlots.Length)
+        if (_slotsCounter == _otherUnitsSlots.Length)
         {
             _slotsCounter = 0;
         }
@@ -49,8 +51,24 @@ public class LobbyUnitsSpawner : MonoBehaviour
         unitTransform.localPosition = Vector3.zero;
         unitTransform.localRotation = Quaternion.identity;
     }
-    private void ApplyProfileToUnit(Profile profile, Unit unit)
+    private void ApplyProfileToUnit(Profile profile, Unit unit, bool randomSkin)
     {
-        unit.UnitSkin.SetSkin("skin_elf_prefab");
+        string skinKey = randomSkin ? $"skin_{EntitiesRegistry.i.Skins.GetRandom().id}_prefab" : ""; // SKIN
+        unit.UnitSkin.SetSkin(skinKey);
+    }
+
+    public void Dispose()
+    {
+        if (_player != null)
+        {
+            Destroy(_player.gameObject);
+        }
+        foreach (var item in _otherUnits)
+        {
+            if(item)
+            {
+                Destroy(item.gameObject);
+            }
+        }
     }
 }

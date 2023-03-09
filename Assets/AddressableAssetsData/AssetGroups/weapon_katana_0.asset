@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: weapon_katana_0
+  m_EditorClassIdentifier: 
+  m_GroupName: weapon_katana_0
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 349d6cfe0582543408f69cb1ca9230ea
+  m_SerializeEntries:
+  - m_GUID: 796b006f3401c9549a01a78d7607673a
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_katana_0/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: baf4f8c53b644154b9c254d8117a6913
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_katana_0/Blue.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c207ce996b775cb46a658d5210bde621
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_katana_0/Purple.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bb85b379f37e5b243badd8abdeb39d5c
+    m_Address: weapon_katana_0_model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 42e62ff7f3bb7dc4b81e2bc7d9f48ffc
+    m_Address: weapon_katana_0_prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a88bdd9bb19b6a45b54b0755751643a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6aeab6bddd5e7234c8ea5eb3757abf4d, type: 2}
+    - {fileID: 11400000, guid: 0e0086ca58636fa4783fab69f78646ec, type: 2}

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: weapon_hack_2
+  m_EditorClassIdentifier: 
+  m_GroupName: weapon_hack_2
+  m_Data:
+    m_SerializedData: []
+  m_GUID: ca69b8c73c288ff4e90e144d2836d387
+  m_SerializeEntries:
+  - m_GUID: c08a8040372723d48920af3c67b4f66d
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_hack_2/Black.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5cba7ef5ada3aae45b1a4f785ee107dd
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_hack_2/Blue.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7c72b60fb22516d43b8747e06819e105
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_hack_2/Grey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6d98fe4468d13694ebaf05b1f49914b6
+    m_Address: Assets/Internal Assets/Adressables/Weapons/weapon_hack_2/Purple.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3eb665031d407f948a216d6b20a2b693
+    m_Address: weapon_hack_2_model
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ca4d0e8e323ebeb4786bef85f68be750
+    m_Address: weapon_hack_2_prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a88bdd9bb19b6a45b54b0755751643a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f0d965bd36d347f4f85174a14e0d200f, type: 2}
+    - {fileID: 11400000, guid: 3123cbfcc891f5b49a36022cf767574d, type: 2}
