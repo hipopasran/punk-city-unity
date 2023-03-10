@@ -351,6 +351,7 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
             {
                 StopCoroutine(_jumpingRoutine);
             }
+            Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!JumpAnimation");
             _jumpingRoutine = JumpAnimation(_jumpPoint);
             StartCoroutine(_jumpingRoutine);
         }

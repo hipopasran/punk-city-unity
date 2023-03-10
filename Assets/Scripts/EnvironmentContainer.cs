@@ -20,4 +20,20 @@ public class EnvironmentContainer : MonoBehaviour
     {
         Instance = this;
     }
+
+    private void OnDrawGizmos()
+    {
+        if(_playerPoint)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawCube(_playerPoint.position, new Vector3(1f, 2f, 1f));
+            Gizmos.DrawRay(_playerPoint.position, _playerPoint.forward * 10f);
+        }
+        if (_enemyPoint)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawCube(_enemyPoint.position, new Vector3(1f, 2f, 1f));
+            Gizmos.DrawRay(_enemyPoint.position, _enemyPoint.forward * 10f);
+        }
+    }
 }

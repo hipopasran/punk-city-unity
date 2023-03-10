@@ -42,7 +42,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9020961443565671084}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4bcff10a3a51ff844abdf8d429c5f395, type: 3}
+  m_Avatar: {fileID: 9000000, guid: d126580a9e84a5c49812f5974044be3f, type: 3}
   m_Controller: {fileID: 9100000, guid: 787363e14ee13524ca4562d907797bea, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -143,6 +143,7 @@ MonoBehaviour:
   _locationKey: location
   _jumpInKey: jump_in
   _jumpOutKey: jump_out
+  testJumpPoint: {fileID: 0}
 --- !u!1 &9020961444287331444
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0085e6cd0f058f540aedd8e242e553de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 1
+  _maxSpeed: 2
   _speedUpDuration: 1
   _velocityChangeCurve:
     serializedVersion: 2

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -65,9 +66,10 @@ public class UnitSkin : MonoBehaviour, IUnitComponent
         _items[itemSlot] = item;
         Transform itemTransform = _items[itemSlot].transform;
         itemTransform.SetParent(_currentSkin.ItemsSlots[itemSlot]);
-        itemTransform.localScale = Vector3.one;
+        itemTransform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
         itemTransform.localRotation = Quaternion.identity;
         itemTransform.localPosition = Vector3.zero;
+        itemTransform.DOScale(1f, 3f).SetEase(Ease.InSine);
     }
     public void AttachItem(string name, int itemSlot)
     {
