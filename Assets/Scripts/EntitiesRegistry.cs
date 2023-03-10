@@ -26,6 +26,8 @@ public class EntitiesRegistry : MonoBehaviour
     public EffectData[] Effects => _data.effects;
     public Dictionary<string, EffectData> EffectsRegistry { get; private set; }
     public SkinData[] Skins => _data.skins;
+    public WeaponData[] Weapns => _data.weapons;
+    public Dictionary<string, WeaponData> WeaponsRegistry { get; private set; }
 
     private void Initialize()
     {
@@ -43,6 +45,12 @@ public class EntitiesRegistry : MonoBehaviour
         foreach (var item in _data.effects)
         {
             EffectsRegistry.Add(item.id, item);
+        }
+
+        WeaponsRegistry = new Dictionary<string, WeaponData>();
+        foreach (var item in _data.weapons)
+        {
+            WeaponsRegistry.Add(item.id, item);
         }
     }
     

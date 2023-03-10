@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using static UnityEngine.UI.CanvasScaler;
 
 public class UnitAttack : MonoBehaviour, IUnitComponent
 {
     public event System.Action onAttack;
 
-    public AttackKind LatAttackKind { get; private set; }
+    public AttackKind LastAttackKind { get; private set; }
+    public AttackPreparingKind AttackPreparingKind { get; private set; }
 
     private UnitWeapon _currentWeapon;
     private Unit _unit;
@@ -26,22 +28,23 @@ public class UnitAttack : MonoBehaviour, IUnitComponent
 
     public UnitAttack DoAttack()
     {
-        LatAttackKind = _currentWeapon.AttackKind;
+        LastAttackKind = _currentWeapon.AttackKind;
         _unit.UnitAnimator.PlayAttack(_currentWeapon.AttackPreparingKind, _currentWeapon.AttackKind);
         return this;
     }
-    public UnitAttack EquipWeapon(string key, int level)
+    public UnitAttack EquipWeapon(string key, int level, float delay = 0f)
     {
-        AsyncOperationHandle<GameObject> asyncOperation = Addressables.LoadAssetAsync<GameObject>($"weapon_{key}_{level}_prefab");
-        asyncOperation.Completed += WeaponLoadedHandler;
+        if(delay == -1f)
+        {
+            delay = EntitiesRegistry.i.WeaponsRegistry[key].weaponKind == WeaponKind.Melee ? 1f : 1.8f + EntitiesRegistry.i.WeaponsRegistry[key].additionalEquipDelay;
+        }
+        _unit.UnitSkin.AttachItem($"weapon_{key}_{level}_prefab", 0, delay)
+            .OnItemAttached((item, slot) => { _currentWeapon = item as UnitWeapon; _onWeaponEquipped?.Invoke(); });
         return this;
     }
     public UnitAttack ClearWeapon()
     {
-        if(_currentWeapon != null )
-        {
-            Addressables.ReleaseInstance(_currentWeapon.gameObject);
-        }
+        _unit.UnitSkin.RemoveItem(0);
         return this;
     }
     public UnitAttack OnWeaponEquipped(System.Action callback)
@@ -55,22 +58,9 @@ public class UnitAttack : MonoBehaviour, IUnitComponent
         return this;
     }
 
-
-    private void WeaponLoadedHandler(AsyncOperationHandle<GameObject> asyncOperation)
-    {
-        if (_currentWeapon != null)
-        {
-            Addressables.ReleaseInstance(_currentWeapon.gameObject);
-        }
-        _currentWeapon = Instantiate(asyncOperation.Result).GetComponent<UnitWeapon>();
-        _unit.UnitSkin.AttachItem(_currentWeapon, 0);
-        _onWeaponEquipped?.Invoke();
-        _onWeaponEquipped = null;
-    }
-
     private void AnimationEventHandler(string message)
     {
-        if(message == "attack")
+        if (message == "attack")
         {
             onAttack?.Invoke();
         }

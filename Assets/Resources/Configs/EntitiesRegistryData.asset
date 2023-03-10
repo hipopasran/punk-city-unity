@@ -68,3 +68,29 @@ MonoBehaviour:
   - id: human
   - id: robot
   - id: wolf
+  weapons:
+  - id: katana
+    attackKind: 6
+    attackPreparingKind: 1
+    weaponKind: 0
+    additionalEquipDelay: 0
+  - id: hack
+    attackKind: 4
+    attackPreparingKind: 2
+    weaponKind: 1
+    additionalEquipDelay: 0.4
+  - id: grenade
+    attackKind: 9
+    attackPreparingKind: 2
+    weaponKind: 2
+    additionalEquipDelay: 0
+  - id: pistol
+    attackKind: 9
+    attackPreparingKind: 2
+    weaponKind: 1
+    additionalEquipDelay: 0
+  - id: annihilation
+    attackKind: 3
+    attackPreparingKind: 2
+    weaponKind: 1
+    additionalEquipDelay: 0

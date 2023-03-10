@@ -65,7 +65,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.98203593
+      - time: 0.8741928
         functionName: AnimationEventHandler
         data: attack_stop
         objectReferenceParameter: {instanceID: 0}

@@ -347,8 +347,14 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
 
     private void JumpHandler(bool intro)
     {
-        SetBool(_jumpInKey, false);
-        SetBool(_jumpOutKey, false);
+        if(intro)
+        {
+            SetBool(_jumpInKey, false);
+        }
+        else
+        {
+            SetBool(_jumpOutKey, false);
+        }
     }
     private void PreparedHandler()
     {

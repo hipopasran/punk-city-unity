@@ -1,7 +1,9 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using static UnityEditor.Progress;
 
 public class UnitSkin : MonoBehaviour, IUnitComponent
 {
@@ -10,6 +12,7 @@ public class UnitSkin : MonoBehaviour, IUnitComponent
     private Unit _unit;
     private Skin _currentSkin;
     private UnitItem[] _items;
+    private event Action<UnitItem, int> _onItemAttachedOneTime;
 
     public Skin Skin => _currentSkin;
     public Unit Unit => _unit;
@@ -19,11 +22,49 @@ public class UnitSkin : MonoBehaviour, IUnitComponent
         _unit = unit;
     }
 
-    public void SetSkin(string name)
+    public UnitSkin SetSkin(string name)
     {
         AsyncOperationHandle<GameObject> asyncOperation = Addressables.LoadAssetAsync<GameObject>(name);
         asyncOperation.Completed += SkinLoadedHandler;
+        return this;
     }
+    public UnitSkin RemoveItem(int slot)
+    {
+        if (_items[slot] != null)
+        {
+            _items[slot].transform.DOScale(0.001f, 0.5f).OnComplete(() =>
+            {
+                Addressables.ReleaseInstance(_items[slot].gameObject);
+            });
+        }
+        return this;
+    }
+    public UnitSkin ClearItems()
+    {
+        foreach (var item in _items)
+        {
+            if (item != null)
+            {
+                item.transform.DOScale(0.001f, 0.5f).OnComplete(() =>
+                {
+                    Addressables.ReleaseInstance(item.gameObject);
+                });
+            }
+        }
+        return this;
+    }
+    public UnitSkin AttachItem(string name, int itemSlot, float delay = 0f)
+    {
+        AsyncOperationHandle<GameObject> asyncOperation = Addressables.InstantiateAsync(name);
+        asyncOperation.Completed += (asyncOperationHandler) => { ItemLoadedHandler(asyncOperationHandler, itemSlot, delay); };
+        return this;
+    }
+    public UnitSkin OnItemAttached(System.Action<UnitItem, int> callback)
+    {
+        _onItemAttachedOneTime += callback;
+        return this;
+    }
+
     private void SkinLoadedHandler(AsyncOperationHandle<GameObject> asyncOperation)
     {
         if (_currentSkin != null)
@@ -39,54 +80,20 @@ public class UnitSkin : MonoBehaviour, IUnitComponent
         _items = new UnitItem[_currentSkin.ItemsSlots.Length];
         _unit.UnitAnimator.FullReset();
     }
-
-    public void RemoveItem(int slot)
-    {
-        if (_items[slot] != null)
-        {
-            Addressables.ReleaseInstance(_items[slot].gameObject);
-        }
-    }
-    public void ClearItems()
-    {
-        foreach (var item in _items)
-        {
-            if(item != null)
-            {
-                Addressables.ReleaseInstance(item.gameObject);
-            }
-        }
-    }
-    public void AttachItem(UnitItem item, int itemSlot)
+    private void ItemLoadedHandler(AsyncOperationHandle<GameObject> asyncOperation, int itemSlot, float delay = 0f)
     {
         if (_items[itemSlot] != null)
         {
             Addressables.ReleaseInstance(_items[itemSlot].gameObject);
         }
-        _items[itemSlot] = item;
+        _items[itemSlot] = asyncOperation.Result.GetComponent<UnitItem>();
         Transform itemTransform = _items[itemSlot].transform;
         itemTransform.SetParent(_currentSkin.ItemsSlots[itemSlot]);
-        itemTransform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
+        itemTransform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
         itemTransform.localRotation = Quaternion.identity;
         itemTransform.localPosition = Vector3.zero;
-        itemTransform.DOScale(1f, 2f).SetEase(Ease.InSine);
-    }
-    public void AttachItem(string name, int itemSlot)
-    {
-        AsyncOperationHandle<GameObject> asyncOperation = Addressables.LoadAssetAsync<GameObject>(name);
-        asyncOperation.Completed += (asyncOperationHandler) => { ItemLoadedHandler(asyncOperationHandler, itemSlot); };
-    }
-    private void ItemLoadedHandler(AsyncOperationHandle<GameObject> asyncOperation, int itemSlot)
-    {
-        if (_items[itemSlot] != null)
-        {
-            Addressables.ReleaseInstance(_items[itemSlot].gameObject);
-        }
-        _items[itemSlot] = Instantiate(asyncOperation.Result).GetComponent<UnitItem>();
-        Transform itemTransform = _items[itemSlot].transform;
-        itemTransform.SetParent(_currentSkin.ItemsSlots[itemSlot]);
-        itemTransform.localScale = Vector3.one;
-        itemTransform.localRotation = Quaternion.identity;
-        itemTransform.localPosition = Vector3.zero;
+        itemTransform.DOScale(1f, 1f).SetEase(Ease.OutBack).SetDelay(delay);
+        _onItemAttachedOneTime?.Invoke(_items[itemSlot], itemSlot);
+        _onItemAttachedOneTime = null;
     }
 }

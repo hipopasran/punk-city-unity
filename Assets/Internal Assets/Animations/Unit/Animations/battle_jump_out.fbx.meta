@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fe8c9934d07ccfd4eb394f6684eb5e88
+guid: 0a57096e00b00744d8ac1c48c245ef11
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -37,9 +37,9 @@ ModelImporter:
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 6
+      lastFrame: 56
       wrapMode: 0
-      orientationOffsetY: -39.15
+      orientationOffsetY: -15.44
       level: 0
       cycleOffset: 0
       loop: 0
@@ -57,16 +57,9 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.16766468
+      - time: 0.8568627
         functionName: AnimationEventHandler
-        data: attack
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.8882353
-        functionName: AnimationEventHandler
-        data: attack_stop
+        data: jump_out
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0

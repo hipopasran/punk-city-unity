@@ -215,16 +215,16 @@ public class GameScenario : BaseScenario
         {
             unit.UnitAttack.ClearWeapon();
         })
-        .EquipWeapon(weapon, 0);
+        .EquipWeapon(weapon, 0, -1f);
     }
 
 
     private void PlayerAttackHandler()
     {
-        _enemy.UnitAnimator.PlayDamage(_player.UnitAttack.LatAttackKind);
+        _enemy.UnitAnimator.PlayDamage(_player.UnitAttack.LastAttackKind);
     }
     private void EnemyAttackHandler()
     {
-        _player.UnitAnimator.PlayDamage(_enemy.UnitAttack.LatAttackKind);
+        _player.UnitAnimator.PlayDamage(_enemy.UnitAttack.LastAttackKind);
     }
 }
