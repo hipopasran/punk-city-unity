@@ -73,20 +73,38 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.0010223389
       value: 0
-      inSlope: 2.1828992
-      outSlope: 2.1828992
+      inSlope: 2.1378386
+      outSlope: 2.1378386
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.038854916
+      outWeight: 0.06644149
     - serializedVersion: 3
-      time: 1.0020752
-      value: 0.007862091
-      inSlope: -4.268183
-      outSlope: -4.268183
+      time: 0.24838102
+      value: 0.34900942
+      inSlope: 0.037329722
+      outSlope: 0.037329722
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.051099118
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7851838
+      value: -0.037216473
+      inSlope: -0.097293064
+      outSlope: -0.097293064
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.20049691
+    - serializedVersion: 3
+      time: 1.0010376
+      value: 0.00023269653
+      inSlope: -0.03163764
+      outSlope: -0.03163764
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.32244924
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -104,6 +122,15 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
+      time: 0.88127863
+      value: 0.99832153
+      inSlope: 0.06228708
+      outSlope: 0.06228708
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.43961084
+    - serializedVersion: 3
       time: 1
       value: 1
       inSlope: 0
@@ -115,8 +142,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _animator: {fileID: 9020961443565671074}
-  _objectForJumpAnimation: {fileID: 9020961443565671075}
+  _delayBeforeJumpIn: 0.8
+  _delayBeforeJumpOut: 0.5
+  _animator: {fileID: 0}
+  _objectForJumpAnimation: {fileID: 0}
   _movingSpeedParameterName: MovingSpeed
   _attackStartKey: attack_start
   _attackPistolKey: attack_pistol

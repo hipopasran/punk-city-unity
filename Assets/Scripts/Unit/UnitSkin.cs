@@ -69,7 +69,7 @@ public class UnitSkin : MonoBehaviour, IUnitComponent
         itemTransform.localScale = new Vector3(0.0001f, 0.0001f, 0.0001f);
         itemTransform.localRotation = Quaternion.identity;
         itemTransform.localPosition = Vector3.zero;
-        itemTransform.DOScale(1f, 3f).SetEase(Ease.InSine);
+        itemTransform.DOScale(1f, 2f).SetEase(Ease.InSine);
     }
     public void AttachItem(string name, int itemSlot)
     {

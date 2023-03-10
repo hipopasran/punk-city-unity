@@ -16,6 +16,8 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
     [SerializeField] private float _jumpHeight = 3f;
     [SerializeField] private AnimationCurve _jumpHightCurve;
     [SerializeField] private AnimationCurve _jumpMovingCurve;
+    [SerializeField] private float _delayBeforeJumpIn = 0.5f;
+    [SerializeField] private float _delayBeforeJumpOut = 0.1f;
     [Header("Links")]
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _objectForJumpAnimation;
@@ -65,10 +67,10 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
 
     public Unit Unit => _unit;
     public Vector3 JumpPoint { get => _jumpPoint; set => _jumpPoint = value; }
-    public bool NeedToJump => 
-        _currentAttackKind == AttackKind.Knife 
-        || _currentAttackKind == AttackKind.Sword 
-        || _currentAttackKind == AttackKind.Katana 
+    public bool NeedToJump =>
+        _currentAttackKind == AttackKind.Knife
+        || _currentAttackKind == AttackKind.Sword
+        || _currentAttackKind == AttackKind.Katana
         || _currentAttackKind == AttackKind.Hammer;
 
     public void InitializeOn(Unit unit)
@@ -156,14 +158,19 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
                 break;
         }
         SetTrigger("attack_start");
-        if (attackPreparingKind == AttackPreparingKind.None && NeedToJump)
+        if (NeedToJump)
         {
-            if(_jumpingRoutine != null)
+            SetBool(_jumpInKey, true);
+            SetBool(_jumpOutKey, true);
+            if (attackPreparingKind == AttackPreparingKind.None)
             {
-                StopCoroutine(_jumpingRoutine);
+                if (_jumpingRoutine != null)
+                {
+                    StopCoroutine(_jumpingRoutine);
+                }
+                _jumpingRoutine = JumpAnimation(jumpToPoint, _delayBeforeJumpIn);
+                StartCoroutine(_jumpingRoutine);
             }
-            _jumpingRoutine = JumpAnimation(jumpToPoint);
-            StartCoroutine(_jumpingRoutine);
         }
     }
     public void PlayIdle()
@@ -288,6 +295,7 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
 
     public void AnimationEventHandler(string parameter)
     {
+        Debug.Log("AnimationEventHandler: " + parameter);
         AnimationEvent?.Invoke(parameter);
         switch (parameter)
         {
@@ -317,8 +325,9 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
         }
     }
 
-    private IEnumerator JumpAnimation(Vector3 targetPosition, System.Action callback = null)
+    private IEnumerator JumpAnimation(Vector3 targetPosition, float delay, System.Action callback = null)
     {
+        yield return new WaitForSeconds(delay);
         float t = 0f, progress = 0f;
         Vector3 startPos = _objectForJumpAnimation.position;
         Vector3 endPos = targetPosition;
@@ -345,14 +354,14 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
     {
         SetBool(_prepareMeleeKey, false);
         SetBool(_prepareRangedKey, false);
+
         if (NeedToJump)
         {
             if (_jumpingRoutine != null)
             {
                 StopCoroutine(_jumpingRoutine);
             }
-            Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!JumpAnimation");
-            _jumpingRoutine = JumpAnimation(_jumpPoint);
+            _jumpingRoutine = JumpAnimation(_jumpPoint, _delayBeforeJumpIn);
             StartCoroutine(_jumpingRoutine);
         }
     }
@@ -372,13 +381,13 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
     }
     private void AttackStopHandler()
     {
-        if(NeedToJump)
+        if (NeedToJump)
         {
             if (_jumpingRoutine != null)
             {
                 StopCoroutine(_jumpingRoutine);
             }
-            _jumpingRoutine = JumpAnimation(_jumpObjectDefaultPosition ,() => { OnAttackCompleted?.Invoke(); });
+            _jumpingRoutine = JumpAnimation(_jumpObjectDefaultPosition, _delayBeforeJumpOut, () => { OnAttackCompleted?.Invoke(); });
             StartCoroutine(_jumpingRoutine);
         }
         else
@@ -413,7 +422,7 @@ public class UnitAnimatorEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        if(GUILayout.Button("Play attack: grenade"))
+        if (GUILayout.Button("Play attack: grenade"))
         {
             _target.PlayAttack(Vector3.zero, AttackPreparingKind.None, AttackKind.Grenade);
         }
