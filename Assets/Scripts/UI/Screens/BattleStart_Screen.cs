@@ -18,12 +18,14 @@ public class BattleStart_Screen : UIController
     }
     public BattleStart_Screen SetEnemy(Profile profile)
     {
-
+        _enemyBlock.SetAvatar(profile.avatar);
+        _enemyBlock.SetNick(profile.identification);
         return this;
     }
     public BattleStart_Screen SetPlayer(Profile profile)
     {
-
+        _playerBlock.SetAvatar(profile.avatar);
+        _playerBlock.SetNick(profile.identification);
         return this;
     }
 }

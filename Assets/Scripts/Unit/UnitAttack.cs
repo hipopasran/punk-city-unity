@@ -4,6 +4,9 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class UnitAttack : MonoBehaviour, IUnitComponent
 {
+    public event System.Action onAttack;
+
+    public AttackKind LatAttackKind { get; private set; }
 
     private UnitWeapon _currentWeapon;
     private Unit _unit;
@@ -23,6 +26,7 @@ public class UnitAttack : MonoBehaviour, IUnitComponent
 
     public UnitAttack DoAttack()
     {
+        LatAttackKind = _currentWeapon.AttackKind;
         _unit.UnitAnimator.PlayAttack(_currentWeapon.AttackPreparingKind, _currentWeapon.AttackKind);
         return this;
     }
@@ -66,7 +70,10 @@ public class UnitAttack : MonoBehaviour, IUnitComponent
 
     private void AnimationEventHandler(string message)
     {
-
+        if(message == "attack")
+        {
+            onAttack?.Invoke();
+        }
     }
     private void AttackAnimationCompletedHandler()
     {

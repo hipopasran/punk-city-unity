@@ -54,21 +54,26 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
     [Space]
     [SerializeField] private string _jumpInKey = "jump_in";
     [SerializeField] private string _jumpOutKey = "jump_out";
+    [Header("Debug")]
+    public Transform testJumpPoint;
 
     private Unit _unit;
     private IEnumerator _jumpingRoutine;
     private Vector3 _jumpObjectDefaultPosition;
-    private Vector3? _jumpTarget;
-    private bool _jumping;
-    private Transform _jumpPoint;
+    private Vector3 _jumpPoint;
+    private AttackKind _currentAttackKind;
 
     public Unit Unit => _unit;
-    public Transform JumpPoint { get => _jumpPoint; set => _jumpPoint = value; }
+    public Vector3 JumpPoint { get => _jumpPoint; set => _jumpPoint = value; }
+    public bool NeedToJump => 
+        _currentAttackKind == AttackKind.Knife 
+        || _currentAttackKind == AttackKind.Sword 
+        || _currentAttackKind == AttackKind.Katana 
+        || _currentAttackKind == AttackKind.Hammer;
 
     public void InitializeOn(Unit unit)
     {
         _unit = unit;
-        _jumpObjectDefaultPosition = _objectForJumpAnimation.position;
     }
 
     public void SetTrigger(string parameterName)
@@ -100,8 +105,10 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
     {
         PlayAttack(_jumpPoint, attackPreparingKind, attackKind);
     }
-    public void PlayAttack(Transform jumpToPoint, AttackPreparingKind attackPreparingKind, AttackKind attackKind)
+    public void PlayAttack(Vector3 jumpToPoint, AttackPreparingKind attackPreparingKind, AttackKind attackKind)
     {
+        _jumpObjectDefaultPosition = _objectForJumpAnimation.position;
+        _currentAttackKind = attackKind;
         switch (attackPreparingKind)
         {
             case AttackPreparingKind.None:
@@ -149,15 +156,13 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
                 break;
         }
         SetTrigger("attack_start");
-        _jumping = jumpToPoint != null;
-        _jumpTarget = jumpToPoint?.position;
-        if (attackPreparingKind == AttackPreparingKind.None && _jumping)
+        if (attackPreparingKind == AttackPreparingKind.None && NeedToJump)
         {
             if(_jumpingRoutine != null)
             {
                 StopCoroutine(_jumpingRoutine);
             }
-            _jumpingRoutine = JumpAnimation();
+            _jumpingRoutine = JumpAnimation(jumpToPoint);
             StartCoroutine(_jumpingRoutine);
         }
     }
@@ -202,6 +207,7 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
             default:
                 break;
         }
+        SetTrigger("damage_start");
     }
     public void PlayDeath(AttackKind fromAttack)
     {
@@ -240,6 +246,7 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
             default:
                 break;
         }
+        SetTrigger("death_start");
     }
     public void SetLocation(int location)
     {
@@ -310,11 +317,11 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
         }
     }
 
-    private IEnumerator JumpAnimation(System.Action callback = null)
+    private IEnumerator JumpAnimation(Vector3 targetPosition, System.Action callback = null)
     {
         float t = 0f, progress = 0f;
         Vector3 startPos = _objectForJumpAnimation.position;
-        Vector3 endPos = (Vector3)_jumpTarget;
+        Vector3 endPos = targetPosition;
         Vector3 currentPosition;
         while (progress < 1f)
         {
@@ -338,14 +345,13 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
     {
         SetBool(_prepareMeleeKey, false);
         SetBool(_prepareRangedKey, false);
-        if (_jumping)
+        if (NeedToJump)
         {
-            _jumpTarget = _jumpObjectDefaultPosition;
             if (_jumpingRoutine != null)
             {
                 StopCoroutine(_jumpingRoutine);
             }
-            _jumpingRoutine = JumpAnimation();
+            _jumpingRoutine = JumpAnimation(_jumpPoint);
             StartCoroutine(_jumpingRoutine);
         }
     }
@@ -365,21 +371,19 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
     }
     private void AttackStopHandler()
     {
-        if(_jumping)
+        if(NeedToJump)
         {
             if (_jumpingRoutine != null)
             {
                 StopCoroutine(_jumpingRoutine);
             }
-            _jumpingRoutine = JumpAnimation(() => { OnAttackCompleted?.Invoke(); });
+            _jumpingRoutine = JumpAnimation(_jumpObjectDefaultPosition ,() => { OnAttackCompleted?.Invoke(); });
             StartCoroutine(_jumpingRoutine);
         }
         else
         {
             OnAttackCompleted?.Invoke();
         }
-        _jumping = false;
-
     }
     private void DamageHandler()
     {
@@ -410,43 +414,43 @@ public class UnitAnimatorEditor : Editor
         base.OnInspectorGUI();
         if(GUILayout.Button("Play attack: grenade"))
         {
-            _target.PlayAttack(null, AttackPreparingKind.None, AttackKind.Grenade);
+            _target.PlayAttack(Vector3.zero, AttackPreparingKind.None, AttackKind.Grenade);
         }
         if (GUILayout.Button("Play attack: blaster"))
         {
-            _target.PlayAttack(null, AttackPreparingKind.Ranged, AttackKind.Blaster);
+            _target.PlayAttack(Vector3.zero, AttackPreparingKind.Ranged, AttackKind.Blaster);
         }
         if (GUILayout.Button("Play attack: pistol"))
         {
-            _target.PlayAttack(null, AttackPreparingKind.Ranged, AttackKind.Pistol);
+            _target.PlayAttack(Vector3.zero, AttackPreparingKind.Ranged, AttackKind.Pistol);
         }
         if (GUILayout.Button("Play attack: shotgun"))
         {
-            _target.PlayAttack(null, AttackPreparingKind.Ranged, AttackKind.Shotgun);
+            _target.PlayAttack(Vector3.zero, AttackPreparingKind.Ranged, AttackKind.Shotgun);
         }
         if (GUILayout.Button("Play attack: rifle"))
         {
-            _target.PlayAttack(null, AttackPreparingKind.Ranged, AttackKind.Rifle);
+            _target.PlayAttack(Vector3.zero, AttackPreparingKind.Ranged, AttackKind.Rifle);
         }
         if (GUILayout.Button("Play attack: knife"))
         {
-            _target.PlayAttack(_target.JumpPoint, AttackPreparingKind.Melee, AttackKind.Knife);
+            _target.PlayAttack(_target.testJumpPoint.position, AttackPreparingKind.Melee, AttackKind.Knife);
         }
         if (GUILayout.Button("Play attack: sword"))
         {
-            _target.PlayAttack(_target.JumpPoint, AttackPreparingKind.Melee, AttackKind.Sword);
+            _target.PlayAttack(_target.testJumpPoint.position, AttackPreparingKind.Melee, AttackKind.Sword);
         }
         if (GUILayout.Button("Play attack: katana"))
         {
-            _target.PlayAttack(_target.JumpPoint, AttackPreparingKind.Melee, AttackKind.Katana);
+            _target.PlayAttack(_target.testJumpPoint.position, AttackPreparingKind.Melee, AttackKind.Katana);
         }
         if (GUILayout.Button("Play attack: hammer"))
         {
-            _target.PlayAttack(_target.JumpPoint, AttackPreparingKind.Melee, AttackKind.Hammer);
+            _target.PlayAttack(_target.testJumpPoint.position, AttackPreparingKind.Melee, AttackKind.Hammer);
         }
         if (GUILayout.Button("Play attack: circuit"))
         {
-            _target.PlayAttack(null, AttackPreparingKind.Ranged, AttackKind.Circuit);
+            _target.PlayAttack(Vector3.zero, AttackPreparingKind.Ranged, AttackKind.Circuit);
         }
         GUILayout.Space(10f);
     }

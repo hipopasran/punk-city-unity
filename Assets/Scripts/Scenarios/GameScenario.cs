@@ -59,12 +59,12 @@ public class GameScenario : BaseScenario
     private IEnumerator Scenario()
     {
         // initialization
+        yield return StartCoroutine(LoadEnvironment());
         SetPlayer(SharedWebData.Instance.playerProfile);
         if (SharedWebData.Instance.lastEnemyProfile != null)
         {
             SetEnemy(SharedWebData.Instance.lastEnemyProfile);
         }
-        yield return StartCoroutine(LoadEnvironment());
         Kernel.UI.Get<LoadingOverlay>().Hide();
         // intro
         yield return StartCoroutine(BattleStart_Subscenario());
@@ -91,6 +91,8 @@ public class GameScenario : BaseScenario
             yield return null;
         }
         Instantiate(asyncOperation.Result, _mapContainer);
+        Transform cameraPoint = EnvironmentContainer.Instance.CameraPoint;
+        Kernel.UI.mainCamera.transform.SetPositionAndRotation(cameraPoint.position, cameraPoint.rotation);
     }
     private IEnumerator LoadCards()
     {
@@ -144,9 +146,10 @@ public class GameScenario : BaseScenario
         {
             _player = Instantiate(_unitPrefab);
         }
-        ApplyUnitToSlot(_player, _playerPoint);
+        ApplyUnitToSlot(_player, EnvironmentContainer.Instance.PlayerPoint);
         ApplyProfileToUnit(profile, _player);
-        _player.UnitAnimator.JumpPoint = _playerJumpPoint;
+        _player.UnitAnimator.JumpPoint = EnvironmentContainer.Instance.PlayerJumpPoint.position;
+        _player.UnitAttack.onAttack += PlayerAttackHandler;
     }
     private void SetEnemy(Profile profile)
     {
@@ -155,9 +158,10 @@ public class GameScenario : BaseScenario
         {
             _enemy = Instantiate(_unitPrefab);
         }
-        ApplyUnitToSlot(_enemy, _enemyPoint);
+        ApplyUnitToSlot(_enemy, EnvironmentContainer.Instance.EnemyPoint);
         ApplyProfileToUnit(profile, _enemy);
-        _enemy.UnitAnimator.JumpPoint = _enemyJumpPoint;
+        _enemy.UnitAnimator.JumpPoint = EnvironmentContainer.Instance.EnemyJumpPoint.position;
+        _enemy.UnitAttack.onAttack += EnemyAttackHandler;
     }
     private void ApplyUnitToSlot(Unit unit, Transform slot)
     {
@@ -212,5 +216,15 @@ public class GameScenario : BaseScenario
             unit.UnitAttack.ClearWeapon();
         })
         .EquipWeapon(weapon, 0);
+    }
+
+
+    private void PlayerAttackHandler()
+    {
+        _enemy.UnitAnimator.PlayDamage(_player.UnitAttack.LatAttackKind);
+    }
+    private void EnemyAttackHandler()
+    {
+        _player.UnitAnimator.PlayDamage(_enemy.UnitAttack.LatAttackKind);
     }
 }
