@@ -1286,7 +1286,7 @@ PrefabInstance:
     - target: {fileID: 6793797689026275841, guid: 7b3812f20266c764f888d3738562112a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 112
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6793797689026275841, guid: 7b3812f20266c764f888d3738562112a,
         type: 3}
@@ -4877,6 +4877,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerInfo_Block ENEMY
       objectReference: {fileID: 0}
+    - target: {fileID: 4676188680536194887, guid: 1944b4d0f8fc71348a2814c85563442c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6812927755953327620, guid: 1944b4d0f8fc71348a2814c85563442c,
         type: 3}
       propertyPath: m_IsActive
@@ -5975,7 +5980,7 @@ PrefabInstance:
     - target: {fileID: 6793797689026275841, guid: 7b3812f20266c764f888d3738562112a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 112
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6793797689026275841, guid: 7b3812f20266c764f888d3738562112a,
         type: 3}
@@ -6538,6 +6543,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerInfo_Block PLAYER
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676188680536194887, guid: 1944b4d0f8fc71348a2814c85563442c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6812927755953327620, guid: 1944b4d0f8fc71348a2814c85563442c,
         type: 3}
@@ -7195,6 +7205,11 @@ MonoBehaviour:
     type: 3}
   _canvasPointerPrefab: {fileID: 550988179995729279, guid: 7c28bdb9495d53640a662eeed8c92948,
     type: 3}
+  _playerDataVisualPrefab: {fileID: 1249825562761344300, guid: 4f8fc4afb151bca4b918a21039af33a0,
+    type: 3}
+  _combineItemsDistance: 0
+  _layoutItemsDistance: 10
+  _screenBordersOffset: 10
 --- !u!1 &1289759175
 GameObject:
   m_ObjectHideFlags: 0

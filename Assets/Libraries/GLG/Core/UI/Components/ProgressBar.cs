@@ -7,8 +7,10 @@ public class ProgressBar : MonoBehaviour
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private RectTransform _cashedTransform;
 
-    public Transform CashedTransform => _cashedTransform;
+    public RectTransform CashedTransform => _cashedTransform;
     public CanvasGroup CanvasGroup => _canvasGroup;
+
+    public float Value { get => _filling.fillAmount; set => _filling.fillAmount = value; }
 
     public void SetValue(float value)
     {

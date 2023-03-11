@@ -151,6 +151,7 @@ public class GameScenario : BaseScenario
         ApplyProfileToUnit(profile, _player);
         _player.UnitAnimator.JumpPoint = EnvironmentContainer.Instance.PlayerJumpPoint.position;
         _player.UnitAttack.onAttack += PlayerAttackHandler;
+        _player.UnitFlyingPlayerDataSpawner.Spawn().SetNick(profile.identification);
     }
     private void SetEnemy(Profile profile)
     {
@@ -163,6 +164,7 @@ public class GameScenario : BaseScenario
         ApplyProfileToUnit(profile, _enemy);
         _enemy.UnitAnimator.JumpPoint = EnvironmentContainer.Instance.EnemyJumpPoint.position;
         _enemy.UnitAttack.onAttack += EnemyAttackHandler;
+        _enemy.UnitFlyingPlayerDataSpawner.Spawn().SetNick(profile.identification);
     }
     private void ApplyUnitToSlot(Unit unit, Transform slot)
     {
