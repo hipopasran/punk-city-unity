@@ -58,6 +58,8 @@ public class LobbyScenario : BaseScenario, IManaged
         _updateLobbyParticipantsRoutine = UpdateLobbyParticipants_SubScenario();
         StartCoroutine(_updateLobbyParticipantsRoutine);
         yield return StartCoroutine(UpdateAvailableBets_SubScenario());
+        yield return new WaitForSeconds(0.1f);
+        Kernel.UI.HideUI<LoadingOverlay>();
         Kernel.UI.ShowUI<LobbyOverlay>();
         while (!_readyToSearchBattle)
         {

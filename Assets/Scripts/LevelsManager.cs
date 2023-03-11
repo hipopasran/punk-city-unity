@@ -22,17 +22,17 @@ public class LevelsManager : MonoBehaviour
     {
         CurrentLevelIndex = PlayerPrefs.GetInt("levelIndex", 0);
         CurrentDisplayLevelIndex = PlayerPrefs.GetInt("displayLevelIndex", 1);
-        if(_autoLoadLastLevel) UnloadCurrentAndLoad(CurrentLevelIndex, false, true);
+        if (_autoLoadLastLevel) UnloadCurrentAndLoad(CurrentLevelIndex, false, true);
     }
-    public void NextLevel(bool autoShowLobby = true)
+    public void NextLevel(bool autoHideLoadingScreen = true)
     {
-        UnloadCurrentAndLoad(CurrentLevelIndex + 1, true, autoShowLobby);
+        UnloadCurrentAndLoad(CurrentLevelIndex + 1, true, autoHideLoadingScreen);
     }
-    public void RestartLevel(bool autoShowLobby = true)
+    public void RestartLevel(bool autoHideLoadingScreen = true)
     {
-        UnloadCurrentAndLoad(CurrentLevelIndex, false, autoShowLobby);
+        UnloadCurrentAndLoad(CurrentLevelIndex, false, autoHideLoadingScreen);
     }
-    public void UnloadCurrentAndLoad(string sceneName, bool incrementDisplayLevelIndex = true, bool autoShowLobby = true)
+    public void UnloadCurrentAndLoad(string sceneName, bool incrementDisplayLevelIndex = true, bool autoHideLoadingScreen = true)
     {
         int index = 0;
         for (int i = 0; i < _levelsPreset.levels.Length; i++)
@@ -44,9 +44,9 @@ public class LevelsManager : MonoBehaviour
                 break;
             }
         }
-        UnloadCurrentAndLoad(index, incrementDisplayLevelIndex, autoShowLobby);
+        UnloadCurrentAndLoad(index, incrementDisplayLevelIndex, autoHideLoadingScreen);
     }
-    public void UnloadCurrentAndLoad(int levelIndex, bool incrementDisplayLevelIndex = true, bool autoShowLobby = true)
+    public void UnloadCurrentAndLoad(int levelIndex, bool incrementDisplayLevelIndex = true, bool autoHideLoadingScreen = true)
     {
         PrevLevelIndex = CurrentLevelIndex;
         PrevScene = CurrentScene;
@@ -62,10 +62,10 @@ public class LevelsManager : MonoBehaviour
         PlayerPrefs.SetInt("levelIndex", CurrentLevelIndex);
         PlayerPrefs.SetInt("displayLevelIndex", CurrentDisplayLevelIndex);
         CurrentScene = _levelsPreset.levels[CurrentLevelIndex].sceneName;
-        StartCoroutine(LoadScene(CurrentScene));
+        StartCoroutine(LoadScene(CurrentScene, autoHideLoadingScreen));
     }
 
-    IEnumerator LoadScene(string name, bool autoShowLobby = true)
+    IEnumerator LoadScene(string name, bool autoHideLoadingScreen)
     {
         Debug.Log($"[LevelsManager] LoadScene:  current:{PrevScene}  load:{name}");
         IsLoading = true;
@@ -97,9 +97,11 @@ public class LevelsManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         IsLoading = false;
         onLevelLoaded?.Invoke((CurrentLevelIndex, CurrentScene));
-        bool loadingHided = false;
-        Kernel.UI.HideUI<LoadingOverlay>().OnHided(() => { loadingHided = true; });
-        while (!loadingHided) yield return null;
-        if (autoShowLobby) Kernel.UI.ShowUI<LobbyOverlay>();
+        if (autoHideLoadingScreen)
+        {
+            bool loadingHided = false;
+            Kernel.UI.HideUI<LoadingOverlay>().OnHided(() => { loadingHided = true; });
+            while (!loadingHided) yield return null;
+        }
     }
 }

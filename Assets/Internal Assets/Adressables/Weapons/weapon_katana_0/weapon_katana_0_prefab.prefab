@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9067337686550316217}
   - component: {fileID: 7038806741877831543}
+  - component: {fileID: 385059495}
   m_Layer: 0
   m_Name: weapon_katana_0_prefab
   m_TagString: Untagged
@@ -76,10 +77,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49423b6abb83fe047b4d5f9783f8dd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletSpawner: {fileID: 0}
   _weaponPoint: {fileID: 9067337686190990506}
   _attackPreparingKind: 1
   _attackKind: 6
   _weaponKind: 0
+--- !u!114 &385059495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9067337686550316218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b425e74a74d9f0b4e911e0436e39838d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitVFXPRefab: vfx_hit_melee
 --- !u!1001 &9067337685368886124
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -65,6 +65,7 @@ public class GameScenario : BaseScenario
         {
             SetEnemy(SharedWebData.Instance.lastEnemyProfile);
         }
+        yield return new WaitForSeconds(0.1f);
         Kernel.UI.Get<LoadingOverlay>().Hide();
         // intro
         yield return StartCoroutine(BattleStart_Subscenario());

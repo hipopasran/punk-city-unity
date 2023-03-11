@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4036122179205460339}
   - component: {fileID: 4183994555552119986}
+  - component: {fileID: 410874820}
   m_Layer: 0
   m_Name: weapon_katana_1_prefab
   m_TagString: Untagged
@@ -76,10 +77,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49423b6abb83fe047b4d5f9783f8dd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletSpawner: {fileID: 0}
   _weaponPoint: {fileID: 4036122177743757682}
   _attackPreparingKind: 1
   _attackKind: 6
   _weaponKind: 0
+--- !u!114 &410874820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036122179205460338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b425e74a74d9f0b4e911e0436e39838d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitVFXPRefab: vfx_hit_melee
 --- !u!1001 &4036122177933456629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95,12 +110,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 96fc9d57f11fefb4e8b4d7e6879e053f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 96fc9d57f11fefb4e8b4d7e6879e053f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.385
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 96fc9d57f11fefb4e8b4d7e6879e053f,
         type: 3}
@@ -110,22 +125,22 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 96fc9d57f11fefb4e8b4d7e6879e053f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.6783002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 96fc9d57f11fefb4e8b4d7e6879e053f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.00000023841852
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 96fc9d57f11fefb4e8b4d7e6879e053f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.7347849
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 96fc9d57f11fefb4e8b4d7e6879e053f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.00000012852249
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 96fc9d57f11fefb4e8b4d7e6879e053f,
         type: 3}
@@ -135,7 +150,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 96fc9d57f11fefb4e8b4d7e6879e053f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -94.578
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 96fc9d57f11fefb4e8b4d7e6879e053f,
         type: 3}

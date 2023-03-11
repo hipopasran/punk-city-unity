@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1016937656380625135}
   - component: {fileID: 1276922843586166755}
+  - component: {fileID: 1993823510}
   m_Layer: 0
   m_Name: weapon_hack_1_prefab
   m_TagString: Untagged
@@ -45,10 +46,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49423b6abb83fe047b4d5f9783f8dd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletSpawner: {fileID: 0}
   _weaponPoint: {fileID: 1016937657705509872}
   _attackPreparingKind: 2
   _attackKind: 4
   _weaponKind: 1
+--- !u!114 &1993823510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016937656380625134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af192a75e6aa7654894fa451afb1f956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _beamPrefab: bullt_beam_hack_1
+  _beamDuration: 0.5
 --- !u!1 &1016937657705509887
 GameObject:
   m_ObjectHideFlags: 0

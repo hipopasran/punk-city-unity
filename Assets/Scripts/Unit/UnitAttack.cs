@@ -1,7 +1,4 @@
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using static UnityEngine.UI.CanvasScaler;
 
 public class UnitAttack : MonoBehaviour, IUnitComponent
 {

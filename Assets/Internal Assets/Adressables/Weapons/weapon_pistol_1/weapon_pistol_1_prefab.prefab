@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 700030684748974749}
   - component: {fileID: 700030684748974750}
+  - component: {fileID: 701823620}
   m_Layer: 0
   m_Name: weapon_pistol_1_prefab
   m_TagString: Untagged
@@ -76,10 +77,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49423b6abb83fe047b4d5f9783f8dd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletSpawner: {fileID: 0}
   _weaponPoint: {fileID: 0}
   _attackPreparingKind: 0
   _attackKind: 0
   _weaponKind: 1
+--- !u!114 &701823620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700030684748974751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f1ff326a5d02c44b4df715ce124cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletMoveDuration: 0.3
+  _bulletPrefab: bullet_pistol
+  _shotVFXPrefab: vfx_shot_pistol
+  _hitVFXPRefab: vfx_hit_pistol
 --- !u!1001 &700030683562997983
 PrefabInstance:
   m_ObjectHideFlags: 0
