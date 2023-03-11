@@ -24101,7 +24101,7 @@ GameObject:
   - component: {fileID: 7007507202507595878}
   - component: {fileID: 898882866978531410}
   m_Layer: 0
-  m_Name: DomeNukePurple
+  m_Name: Grenade_Exp2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
