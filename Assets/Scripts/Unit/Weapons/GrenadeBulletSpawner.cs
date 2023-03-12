@@ -1,4 +1,5 @@
 using DG.Tweening;
+using GLG;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -32,7 +33,10 @@ public class GrenadeBulletSpawner : BaseBulletSpawner
         }
         if (_hitVFXInstance != null)
         {
-            Addressables.ReleaseInstance(_hitVFXInstance);
+            CoroutinesHelper.DoDelayedAction(Kernel.CoroutinesObject, 2f, () => 
+            {
+                Addressables.ReleaseInstance(_hitVFXInstance);
+            });
         }
     }
     public override void DoShot(Transform startPoint, Vector3 endPoint)
@@ -48,8 +52,8 @@ public class GrenadeBulletSpawner : BaseBulletSpawner
                 if (_hitVFXInstance != null)
                 {
                     Transform hitVFXInstanceTransform = _hitVFXInstance.transform;
-                    hitVFXInstanceTransform.position = startPoint.position;
-                    hitVFXInstanceTransform.rotation = startPoint.rotation;
+                    hitVFXInstanceTransform.position = endPoint;
+                    hitVFXInstanceTransform.rotation = Quaternion.identity;
                     hitVFXInstanceTransform.localScale = Vector3.one;
                     _hitVFXInstance.SetActive(true);
                 }

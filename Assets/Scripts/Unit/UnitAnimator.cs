@@ -295,7 +295,7 @@ public class UnitAnimator : MonoBehaviour, IUnitComponent
 
     public void AnimationEventHandler(string parameter)
     {
-        Debug.Log("AnimationEventHandler: " + parameter);
+        //Debug.Log("AnimationEventHandler: " + parameter);
         AnimationEvent?.Invoke(parameter);
         switch (parameter)
         {

@@ -27,8 +27,8 @@ public class MeleeBulletSpawner : BaseBulletSpawner
         if (_hitVFXInstance != null)
         {
             Transform hitVFXInstanceTransform = _hitVFXInstance.transform;
-            hitVFXInstanceTransform.position = startPoint.position;
-            hitVFXInstanceTransform.rotation = startPoint.rotation;
+            hitVFXInstanceTransform.position = endPoint;
+            hitVFXInstanceTransform.rotation = Quaternion.identity;
             hitVFXInstanceTransform.localScale = Vector3.one;
             _hitVFXInstance.SetActive(true);
         }

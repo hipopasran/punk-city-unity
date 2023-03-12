@@ -1,10 +1,12 @@
 using DG.Tweening;
+using GLG;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class PistolBulletSpawner : BaseBulletSpawner
 {
+    [SerializeField] private bool _hitVfxRotationAccordingShotDirection = true;
     [SerializeField] private float _bulletMoveDuration;
     [SerializeField] private string _bulletPrefab;
     [SerializeField] private string _shotVFXPrefab;
@@ -41,7 +43,7 @@ public class PistolBulletSpawner : BaseBulletSpawner
         }
         if (_hitVFXInstance != null)
         {
-            Addressables.ReleaseInstance(_hitVFXInstance);
+            CoroutinesHelper.DoDelayedAction(Kernel.CoroutinesObject, 3f, () => { Addressables.ReleaseInstance(_hitVFXInstance); });
         }
     }
     public override void DoShot(Transform startPoint, Vector3 endPoint)
@@ -67,8 +69,15 @@ public class PistolBulletSpawner : BaseBulletSpawner
                 if (_hitVFXInstance != null)
                 {
                     Transform hitVFXInstanceTransform = _hitVFXInstance.transform;
-                    hitVFXInstanceTransform.position = startPoint.position;
-                    hitVFXInstanceTransform.rotation = startPoint.rotation;
+                    hitVFXInstanceTransform.position = endPoint;
+                    if(_hitVfxRotationAccordingShotDirection)
+                    {
+                        hitVFXInstanceTransform.forward = -startPoint.forward;
+                    }
+                    else
+                    {
+                        hitVFXInstanceTransform.rotation = Quaternion.identity;
+                    }
                     hitVFXInstanceTransform.localScale = Vector3.one;
                     _hitVFXInstance.SetActive(true);
                 }

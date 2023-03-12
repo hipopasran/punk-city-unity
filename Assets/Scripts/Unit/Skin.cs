@@ -5,6 +5,8 @@ public class Skin : MonoBehaviour
 {
     [SerializeField] private Transform[] _itemsSlots;
     [SerializeField] private Transform _bonesRoot;
+    [SerializeField] private Transform _head;
+    [SerializeField] private Transform _chest;
     [SerializeField] private SkinnedMeshRenderer _skinnedMeshRenderer;
 
     private Color _defaultColor;
@@ -12,6 +14,8 @@ public class Skin : MonoBehaviour
 
     public Transform[] ItemsSlots => _itemsSlots;
     public Transform BonesRoot => _bonesRoot;
+    public Transform Head => _head;
+    public Transform Chest => _chest;
     public SkinnedMeshRenderer Renderer => _skinnedMeshRenderer;
 
     private void Awake()
@@ -26,7 +30,7 @@ public class Skin : MonoBehaviour
     }
     public void SetColor(Color color, float duration = 0f)
     {
-        if(duration <= 0f)
+        if (duration <= 0f)
         {
             _skinnedMeshRenderer.material.SetColor("_Color", color);
         }

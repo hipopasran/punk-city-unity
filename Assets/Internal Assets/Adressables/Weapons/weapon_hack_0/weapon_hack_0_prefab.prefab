@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49423b6abb83fe047b4d5f9783f8dd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpawner: {fileID: 0}
+  _disableOnAttack: 0
+  _bulletSpawner: {fileID: 88595313}
   _weaponPoint: {fileID: 1016937657705509872}
   _attackPreparingKind: 2
   _attackKind: 4
@@ -63,8 +64,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af192a75e6aa7654894fa451afb1f956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _beamPrefab: bullt_beam_hack_0
-  _beamDuration: 0.5
+  _beamPrefab: bullet_beam_hack_0
+  _beamDuration: 1.7
 --- !u!1 &1016937657705509887
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +90,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016937657705509887}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.006, z: 0.053}
+  m_LocalPosition: {x: -0, y: 0.0216, z: 0.053}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

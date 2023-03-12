@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49423b6abb83fe047b4d5f9783f8dd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpawner: {fileID: 0}
+  _bulletSpawner: {fileID: 1461174681}
   _weaponPoint: {fileID: 7272988956073614821}
   _attackPreparingKind: 2
   _attackKind: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f1ff326a5d02c44b4df715ce124cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletMoveDuration: 0.3
+  _bulletMoveDuration: 0.2
   _bulletPrefab: bullet_pistol
   _shotVFXPrefab: vfx_shot_pistol
   _hitVFXPRefab: vfx_hit_pistol

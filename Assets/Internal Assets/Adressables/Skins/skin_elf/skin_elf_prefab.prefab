@@ -179,6 +179,8 @@ MonoBehaviour:
   - {fileID: 5212628106411665942}
   - {fileID: 1710539677306428155}
   _bonesRoot: {fileID: 5217239035617535152}
+  _head: {fileID: 5934507879771117223}
+  _chest: {fileID: 480014422880269216}
   _skinnedMeshRenderer: {fileID: 7947320100803727764}
 --- !u!1 &1236451080763118626
 GameObject:

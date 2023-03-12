@@ -73,24 +73,24 @@ MonoBehaviour:
     attackKind: 6
     attackPreparingKind: 1
     weaponKind: 0
-    additionalEquipDelay: 0
+    additionalEquipDelay: 0.8
   - id: hack
     attackKind: 4
     attackPreparingKind: 2
     weaponKind: 1
-    additionalEquipDelay: 0.4
+    additionalEquipDelay: 1.2
   - id: grenade
     attackKind: 9
     attackPreparingKind: 2
     weaponKind: 2
-    additionalEquipDelay: 0
+    additionalEquipDelay: 1.15
   - id: pistol
     attackKind: 9
     attackPreparingKind: 2
     weaponKind: 1
-    additionalEquipDelay: 0
+    additionalEquipDelay: 1.15
   - id: annihilation
     attackKind: 3
     attackPreparingKind: 2
     weaponKind: 1
-    additionalEquipDelay: 0
+    additionalEquipDelay: 1.2

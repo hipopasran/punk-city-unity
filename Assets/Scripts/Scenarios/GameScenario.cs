@@ -55,7 +55,6 @@ public class GameScenario : BaseScenario
         Dispose();
     }
 
-
     private IEnumerator Scenario()
     {
         // initialization
@@ -66,6 +65,8 @@ public class GameScenario : BaseScenario
             SetEnemy(SharedWebData.Instance.lastEnemyProfile);
         }
         yield return new WaitForSeconds(0.1f);
+        _player.UnitAttack.Target = _enemy.transform;
+        _enemy.UnitAttack.Target = _player.transform;
         Kernel.UI.Get<LoadingOverlay>().Hide();
         // intro
         yield return StartCoroutine(BattleStart_Subscenario());
@@ -165,6 +166,7 @@ public class GameScenario : BaseScenario
         _enemy.UnitAnimator.JumpPoint = EnvironmentContainer.Instance.EnemyJumpPoint.position;
         _enemy.UnitAttack.onAttack += EnemyAttackHandler;
         _enemy.UnitFlyingPlayerDataSpawner.Spawn().SetNick(profile.identification);
+        _enemy.UnitAttack.Target = _player.transform;
     }
     private void ApplyUnitToSlot(Unit unit, Transform slot)
     {
@@ -179,13 +181,13 @@ public class GameScenario : BaseScenario
     }
     private void PerformPlayerAttack(string key)
     {
-        PerformAttack(_player, key);
+        PerformAttack(_player, _enemy, key);
     }
     private void PerformEnemyAttack(string key)
     {
-        PerformAttack(_enemy, key);
+        PerformAttack(_enemy, _player, key);
     }
-    private void PerformAttack(Unit unit, string key)
+    private void PerformAttack(Unit unit, Unit target, string key)
     {
         string weapon;
         switch (key)
@@ -212,6 +214,16 @@ public class GameScenario : BaseScenario
         unit.UnitAttack
         .OnWeaponEquipped(() =>
         {
+            Transform targetPos;
+            if(weapon.Contains("grenade"))
+            {
+                targetPos = target.transform;
+            }
+            else
+            {
+                targetPos = target.UnitSkin.Skin.Chest;
+            }
+            unit.UnitAttack.Target = targetPos;
             unit.UnitAttack.DoAttack();
         })
         .OnAttackCompleted(() =>
@@ -220,7 +232,6 @@ public class GameScenario : BaseScenario
         })
         .EquipWeapon(weapon, 0, -1f);
     }
-
 
     private void PlayerAttackHandler()
     {

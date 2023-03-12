@@ -4,6 +4,7 @@ public enum WeaponKind { Melee, Ranged, Grenade }
 
 public class UnitWeapon : UnitItem
 {
+    [SerializeField] private bool _disableOnAttack;
     [SerializeField] BaseBulletSpawner _bulletSpawner;
     [SerializeField] private Transform _weaponPoint;
     [SerializeField] private AttackPreparingKind _attackPreparingKind;
@@ -26,5 +27,9 @@ public class UnitWeapon : UnitItem
     public void DoShot(Vector3 target)
     {
         _bulletSpawner.DoShot(_weaponPoint, target);
+        if(_disableOnAttack)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

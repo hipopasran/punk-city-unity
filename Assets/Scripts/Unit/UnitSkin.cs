@@ -3,10 +3,10 @@ using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-using static UnityEditor.Progress;
 
 public class UnitSkin : MonoBehaviour, IUnitComponent
 {
+    [SerializeField] private float _defaultItemScaleDuration = 0.5f;
     [SerializeField] private Transform _skinParent;
 
     private Unit _unit;
@@ -92,7 +92,7 @@ public class UnitSkin : MonoBehaviour, IUnitComponent
         itemTransform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
         itemTransform.localRotation = Quaternion.identity;
         itemTransform.localPosition = Vector3.zero;
-        itemTransform.DOScale(1f, 1f).SetEase(Ease.OutBack).SetDelay(delay);
+        itemTransform.DOScale(1f, _defaultItemScaleDuration).SetEase(Ease.OutBack).SetDelay(delay);
         _onItemAttachedOneTime?.Invoke(_items[itemSlot], itemSlot);
         _onItemAttachedOneTime = null;
     }

@@ -6,6 +6,7 @@ public class UnitAttack : MonoBehaviour, IUnitComponent
 
     public AttackKind LastAttackKind { get; private set; }
     public AttackPreparingKind AttackPreparingKind { get; private set; }
+    public Transform Target { get; set; }
 
     private UnitWeapon _currentWeapon;
     private Unit _unit;
@@ -21,8 +22,6 @@ public class UnitAttack : MonoBehaviour, IUnitComponent
         _unit.UnitAnimator.OnAttackCompleted += AttackAnimationCompletedHandler;
     }
 
-
-
     public UnitAttack DoAttack()
     {
         LastAttackKind = _currentWeapon.AttackKind;
@@ -33,14 +32,15 @@ public class UnitAttack : MonoBehaviour, IUnitComponent
     {
         if(delay == -1f)
         {
-            delay = EntitiesRegistry.i.WeaponsRegistry[key].weaponKind == WeaponKind.Melee ? 1f : 1.8f + EntitiesRegistry.i.WeaponsRegistry[key].additionalEquipDelay;
+            delay = EntitiesRegistry.i.WeaponsRegistry[key].additionalEquipDelay;
         }
         _unit.UnitSkin.AttachItem($"weapon_{key}_{level}_prefab", 0, delay)
-            .OnItemAttached((item, slot) => { _currentWeapon = item as UnitWeapon; _onWeaponEquipped?.Invoke(); });
+            .OnItemAttached((item, slot) => { _currentWeapon = item as UnitWeapon; _currentWeapon.Prepare(); _onWeaponEquipped?.Invoke(); });
         return this;
     }
     public UnitAttack ClearWeapon()
     {
+        _currentWeapon.Dispose();
         _unit.UnitSkin.RemoveItem(0);
         return this;
     }
@@ -59,6 +59,7 @@ public class UnitAttack : MonoBehaviour, IUnitComponent
     {
         if (message == "attack")
         {
+            _currentWeapon.DoShot(Target.position);
             onAttack?.Invoke();
         }
     }

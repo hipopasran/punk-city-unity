@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49423b6abb83fe047b4d5f9783f8dd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpawner: {fileID: 0}
+  _bulletSpawner: {fileID: 287510432}
   _weaponPoint: {fileID: 3809471697785840774}
   _attackPreparingKind: 1
   _attackKind: 6

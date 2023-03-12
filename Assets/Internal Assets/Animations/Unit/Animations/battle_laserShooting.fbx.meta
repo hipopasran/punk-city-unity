@@ -19,7 +19,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: Event AnimationEventHandler has a time (2.618762) outside
+    animationImportWarnings: Event AnimationEventHandler has a time (2.331181) outside
       the clip's valid range (0.000000..2.133333). It will never be fired
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
@@ -58,7 +58,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.41916168
+      - time: 0.28152123
         functionName: AnimationEventHandler
         data: attack
         objectReferenceParameter: {instanceID: 0}

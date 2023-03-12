@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49423b6abb83fe047b4d5f9783f8dd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpawner: {fileID: 0}
+  _bulletSpawner: {fileID: 863853796}
   _weaponPoint: {fileID: 107624507327139270}
   _attackPreparingKind: 2
   _attackKind: 9
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f8697cba4fe54438d3ad23184b899d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _grenadeMoveDuration: 1
-  _arcHeight: 0.3
+  _grenadeMoveDuration: 0.5
+  _arcHeight: 2
   _greandePrefab: bullet_grenade_0
   _hitVFXPRefab: vfx_hit_grenade
 --- !u!1001 &107624507841890617
@@ -175,6 +175,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 14e2be88b8d85c148838d2c3e0daf117,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: da1a8af9efeb21840be84c4240a1f067, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 14e2be88b8d85c148838d2c3e0daf117,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dc206236ed498a4681b2331198f8696, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 14e2be88b8d85c148838d2c3e0daf117,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 07333492b55eabb4186343cc0e134420, type: 2}
     - target: {fileID: 919132149155446097, guid: 14e2be88b8d85c148838d2c3e0daf117,
         type: 3}
       propertyPath: m_Name

@@ -17,40 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 62bfbc38397f5be4ea1ba708ed0839f9
   m_SerializeEntries:
-  - m_GUID: 45ce40244117f8a40a42a851c464e873
-    m_Address: Assets/Internal Assets/Models_Vitaly/House 1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: a9d14336cbcf2524199fb419af09f22e
-    m_Address: Assets/Internal Assets/Models_Vitaly/House 2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 501a71c6dad777040a33a8d73a1e8170
-    m_Address: Assets/Internal Assets/Models_Vitaly/House 3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: e6536faa6f501ef45b69f77bb8168e4b
-    m_Address: Assets/Internal Assets/Models_Vitaly/House 4
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 81edebaba2e2d7e41abd0479121966dc
-    m_Address: Assets/Internal Assets/Models_Vitaly/House 5
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: e5e72169c802d524d99c2c86fff1962e
-    m_Address: Assets/Internal Assets/Models_Vitaly/House 6
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 092c517785dd9f14a9c39f396c470bce
-    m_Address: Assets/Internal Assets/Models_Vitaly/House 7
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 3435b7a7022b4a345a80a9aecfaa62d2
-    m_Address: Assets/Internal Assets/Models_Vitaly/House 8
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: d84e8664f89c5bd43a0b3c941e00dc22
-    m_Address: Assets/Internal Assets/Models_Vitaly/House 9
+  - m_GUID: 83ca14419473b3341ae7808303c1607d
+    m_Address: Assets/Internal Assets/Adressables/Shared
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
